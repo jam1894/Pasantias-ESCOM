@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app ="escomWeb">
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Access-Control-Allow-Origin" content="*">
+
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/stylesAdmin.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
+        <link rel="stylesheet" href="assets/fonts/font-awesome/css/font-awesome.min.css">
+        <link href = "https://fonts.googleapis.com/css?family= Pangolin " rel = "stylesheet">
+        <title>Control Maquinaria ESCOM</title>
+    </head>
+    <body>
+        <div ui-view class="margins" style="height: 100%;overflow:hidden;">
+
+         </div>
+   
+        <!--Libs-->
+        <script src="assets/lib/jquery/dist/jquery.min.js"></script>
+
+        <script src="assets/lib/angular/angular.min.js"></script>
+        <script src="assets/lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="assets/lib/angular-modal-service/dst/angular-modal-service.min.js"></script>
+
+        <!--Route-->
+        <script src="app/app.module.js"></script>
+        <script src="app/app.route.js"></script>
+
+        <!--Factorys and directive-->
+        <script src="assets/js/globals.js"></script>
+        <script src="assets/js/directive.js"></script>
+
+        <!--Controllers-->
+        <script src="app/components/formAprobadas/aprobadasController.js"></script>
+        <script src="app/components/formEntregadas/entregadasController.js"></script>
+        <script src="app/components/Login/loginController.js"></script> 
+        <script src="app/components/menuAdmin/menuController.js"></script>
+        <script src="app/components/principalAdmin/PrincipalAdminController.js"></script>   
+        <script src="app/components/RegistroNuevaMaquina/registroMaquinasController.js"></script> 
+        <script src="app/components/registroNuevosUsuarios/registroUsuariosController.js"></script>
+        <script src="app/components/Reportes/reportesController.js"></script>
+        <script src="app/components/seguimientoEquipos/seguimientoEquiposController.js"></script>
+        <!--Services-->
+        <script src="app/components/formEntregadas/adminentregadasServices.js"></script>
+    </body>
+</html>

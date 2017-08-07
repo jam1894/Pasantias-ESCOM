@@ -1,0 +1,262 @@
+/*Formulario registro nuevas maquinas*/
+body{
+	background-color: #3a4560;
+	width: 100%;
+	height: auto;
+}
+#clear{
+	clear: both;
+	padding-bottom: 10px;
+}
+#clear1{
+	clear: both;
+	padding-bottom: 20px;
+}
+#clear2{
+	clear: both;
+	padding-bottom: 110px;
+}
+#box-solicitudesP{
+	background-image: url('../../assets/img/Pendiente.png');
+	right: 50px !important;
+}
+#box-solicitudesA{
+	background-position-x: 96%;
+	background-position-y: 50%;
+	background-size: 40px;
+	background-repeat: no-repeat;
+	background-image: url('../../assets/img/Aprobado.png');
+}
+#box-solicitudesD{
+	background-position-x: 96%;
+	background-position-y: 50%;
+	background-size: 40px;
+	background-repeat: no-repeat;
+	background-image: url('../../assets/img/Denegado.png');
+}
+#buttomRegistrar{
+	margin-top: 5%;
+	margin-left: 40%;
+	box-shadow: 1px 1px 1px 1px #0F66BC;
+	border-radius: 20px;
+	height: 35px;
+	width: 20%;
+}
+.botones{position: absolute;background-repeat: no-repeat;background-size: 100% 100%;width: 50px;height: 50px;right: 10px;top: 15px;}
+#buttomRegistrarm{
+	margin-top: 5%;
+	box-shadow: 1px 1px 1px 1px #0F66BC;
+	border-radius: 20px;
+	height: 35px;
+	width: 20%;
+}
+#buttomCargarImagen{
+	position: relative;
+	margin-left: 150%;
+	height: 25px;
+	width: auto;
+	box-shadow: 1px 1px 1px 1px #0F66BC;
+	border-radius: 20px;
+	}
+.table{
+	display: table;
+	width: 100%;
+	height: auto;
+	margin: auto;
+}
+.table-cell{
+	display: table-cell;
+	width: 50%;
+	height: auto;
+	text-align: left;
+}
+#buttom2{
+	margin-top: 11%;
+	box-shadow: 1px 1px 1px 1px #0F66BC;
+	border-radius: 20px;
+	height: 35px;
+	width: 20%;
+}
+#text1{
+	position: absolute;
+	line-height: 50px;
+	color: white;
+	margin-left: 50px;
+	margin-right: -50px;
+}
+#text{
+	line-height: 50px;
+	color: black;
+	left: 25%;
+	position: absolute;
+}
+#inicio-contentRegistroNuevasMaquinas{
+	width: 100%;
+	height:100%;
+	padding: 93px;	
+	background-color: #3a4560;
+	text-align: center;
+	}
+
+#contentRegistroNuevasMaquinas{
+	background-color:#3a4560;
+	width: 100%;
+	height: auto, 0%;
+	position: relative;
+}
+#contentAprobadas{
+	/* width: 100%; */
+	height: auto, 0%;
+	position: relative;
+}
+#inicio-contentAprobadas{
+	width: 50%;
+	height: auto;
+	margin: 0 auto;
+	padding: 10px;
+}
+
+.box-classSoliAprobadas{
+	width: 50%;
+	height: 100%;
+	background-color: #aaaeb8;
+	padding: 30px;
+	margin-top: 30px;
+	border-radius: 10px;
+	box-shadow: 2px 2px 2px black;
+}
+
+.titleAprobadas{
+	position: relative;
+	margin-top: 5px;	 
+	line-height: 2;
+	color: #CED0E3;
+	box-shadow: #676C97;
+	float: left;
+	padding-left: 23%;
+}
+
+.AprobadasDigiteObservaciones{
+	width: 50%;
+	height: 100%;
+	background-color: white;
+	padding: 35px;	
+	box-shadow: 3px 3px 3px black;
+}
+
+#buttomEntregado{
+	margin-top: 4%;
+	margin-left: 70px;
+	box-shadow: 1px 1px 1px 1px #0F66BC;
+	border-radius: 20px;
+	height: 30px;
+	width: 20%;
+}
+#buttomGuardado{
+	margin-top: 4%;
+	margin-left: 70px;
+	box-shadow: 1px 1px 1px 1px #0F66BC;
+	border-radius: 20px;
+	height: 30px;
+	width: 20%;
+}
+.BusquedaReportes{
+	text-align: center;
+	width: 50%;
+	height: 50%;
+	background-color: white;
+	padding: 15px;
+	margin-top: 30px;
+	border-radius: 14px;
+	box-shadow: 3px 1px 17px black;
+}
+
+#buttomSeleccionReporte{
+	width: 10%;
+	height: 10%;
+	margin-top: 200px;
+}
+
+.titleReporte{
+	margin-top: 5px;
+	line-height: 2;
+	color: #6a6b73;
+	box-shadow: #676C97;
+	text-align: center;
+}
+#buttomGenerarReporte{
+	margin-top: 10%;
+	margin-left: 70px;
+	box-shadow: 1px 1px 1px 1px #0F66BC;
+	border-radius: 20px;
+	height: 30px;
+	width: 20%;
+}
+#contentBusquedaReportes{
+	margin-top: 5%;
+	margin-left: 70px;
+}
+.box-classSeguimientoEquipo{
+	width: 70%;
+	background-color: #aaaeb8;
+	padding: 15px;
+	margin-top: 10px;
+	border-radius: 10px;
+	box-shadow: 2px 2px 2px black;
+}
+
+/*************Principal Admin*****************/
+.title{
+	margin-top: 10px;
+	line-height: 2;	
+}
+#content{
+	background-color: #3a4560;
+	width: 100%;
+	height: auto;
+	position: relative;
+}
+#inicio-content{	
+	width: 85%;	
+	margin: 0 auto;	
+	padding: 20px;
+}
+.box-classSoli{
+	width: 74%;
+	height: 50px;
+	background-color: #aaaeb8;
+	padding: 15px;
+	margin-top: 8px;
+	border-radius: 10px;
+	box-shadow: 2px 2px 2px black;
+	position: relative;
+	cursor: pointer;
+}
+
+.image{
+	width: 50%;
+}
+.fondo{
+	width: 100%;
+    height: 100%;
+    background-color: #0B3C5D;
+    right: 0%;
+    top: 0%;
+}
+.contenido{
+	position: relative;
+	width:  80%;
+	height: 100%;
+	background-color: white;
+	left: 10%;
+	right: 10%;
+	padding-top: 5%;
+}
+#box-insumos{
+	width: 50%;
+	height: 30px;
+	background-color: white;
+	border: 2px solid black;
+	margin-top: 2%;
+	position: relative;
+}

@@ -1,0 +1,20 @@
+<body id="fondo2">
+    <div id="content-register">
+                <h1>Novedades relacionadas con el Laboratorio</h1>
+                <select>
+                    <option selected disabled>Maquina</option>
+                </select>
+                <div id="clear1">&nbsp;</div>
+                <div class="horas" id="clear"><span>Detalle de la Novedad</span></div>
+                <br>
+                <br>
+                <textarea rows="4" cols="38"></textarea> 
+                <br>
+                 <div id="clear">&nbsp;</div>
+                <select>
+                    <option selected disabled>Prioridad</option>
+                </select>
+                <br>
+                <button type="button" class="button-black">Regístrar</button>
+            </div>
+</body>

@@ -1,0 +1,244 @@
+/*Globales*/
+body{
+	width:100%;
+	height: auto;
+	overflow-x: hidden;
+}
+
+input,select{
+	width: 50%;
+	height:35px;
+	margin-top: 10px !important;
+	border :2px solid black;
+	border-top:0px;
+	border-left: 0px;
+	border-right: 0px;
+	background-color: transparent;
+}
+
+textarea{
+	width: 50%;
+	height: 80px;
+	resize: none;
+}
+
+button{
+	width: 30%;
+	height: 40px;
+	border-radius: 20px;
+	box-shadow: 2px 2px 2px #809A88;
+	margin-top: 10%;
+	border:2px solid black;
+}
+.clear{
+	clear: both;
+}
+.clear1{
+	clear: both;
+	height: 80px;
+}
+.clear2{
+	clear: both;
+	height: 66px;
+}
+
+.margins{}
+
+/*********************Login**********************/
+.fondo1{
+	background-image:url(../img/ESCOM_2.jpg);
+	background-size:cover;
+	background-repeat:no-repeat;
+	min-height: 648px;
+
+}
+.marco {
+	padding:60px; 
+   	height: 410px;
+   	width: 200px;
+   	border-style: outset;
+   	border-radius: 15px;
+   	background-color: rgba(0,0,0,0.60);
+	margin: 0 auto;
+
+}
+.img { 
+   	padding:78px 18px 20px 100px; 
+   	width: 600px; 
+} 
+.caja1 {
+	font-family: 'sans-serif';
+	font-size: 18px;
+	background-color: white;
+	border: 2px solid black;
+	float: left;
+	position: relative;
+	min-width: 200px;
+}
+.caja2 {
+	font-family: 'sans-serif';
+	font-size: 18px;
+	border: 2px solid black;
+	position: relative;
+	float: left;
+	background-color: white;
+	min-width: 200px;
+}
+.button {
+	position: relative;
+	float: left;
+	border-radius: 10px;
+	font-family: 'Pangolin', cursive;
+	text-decoration:none;
+	background:#e67e22;
+	box-shadow:2px 2px 0px white;
+	min-width: 200px;
+	cursor: pointer;
+}
+.button1 {
+	position: relative;
+	float: left;
+	border-radius: 10px;
+	font-family: 'Pangolin', cursive;
+	text-decoration:none;
+	background:#e67e22;
+	box-shadow:2px 2px 0px white;
+	min-width: 200px;
+	cursor: pointer; 
+}
+.titulo {
+	font-family: 'sans-serif';
+	font-size: 18px;
+	color: rgba(255,255,255,0.6);
+}
+
+/*Registros*/
+
+#content-register{
+	width: 80%;
+	height:100%;
+	margin: 0 auto;
+	text-align: center;
+	background-color:white;
+	padding: 20px;
+	margin:0 auto;
+	left:0;
+	right: 0;
+	position: absolute;
+}
+.background{
+	position: relative;
+	width: 100%;
+	height:100%;
+	background-color: #809A88;
+
+}
+.background-over{
+	position: relative;
+	width: 70%;
+	height:100%;
+	background-color: white;
+	text-align : center;
+	left: 15%;
+	right: 0;
+	padding-top: 5%; 
+}
+
+.button-black{
+	background-color: #3e3e3e;
+	color:white;
+	font-family: 'Pangolin', cursive;
+	margin-top: 30px;
+}
+.horas{
+	width: 30%;
+	height: 0px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+/******************Inicio_Usuario********************/
+
+.fondo2{
+	background-color: #809A88 !important;
+}
+.box-classSolid{
+	width: 90%;
+	height: 65px;
+	background-color: #F58A07;
+	padding: 10px 5px 1px 5px;
+	border-radius: 10px;
+	box-shadow: 2px 2px 2px black;
+}
+.content{
+	background-color: white;
+	width: 80%;
+	height: 100%;
+	position:absolute;
+	padding: 20px;
+	margin:0 auto;
+	left:0;
+	right: 0;
+}
+.images{
+	width: 50%;
+	border-radius: 15px;
+	border-style: groove;
+}
+/****************************************************/
+body{
+	width: 100%;
+	height: 100%;
+}
+
+/*Menú*/
+
+nav{
+	width: 100%;
+	height: 40px;
+	background-color: #3e3e3e;
+	padding: 10px;
+	position: fixed;
+	top:0;
+	z-index: 2000;
+}
+
+nav ul{
+	list-style:none;
+	display: table;
+	width: 100%;
+}
+
+nav ul > li{
+	display: table-cell;
+	list-style-type: none;
+	width: 20%;
+}
+
+#menu-user ul li{
+	display: table-cell;
+	list-style-type: none;
+	width: 35%;
+}
+
+nav ul li > a{
+	text-decoration: none;
+	color: white;
+	padding: 8px;
+	height: 40px;
+}
+
+nav ul li > a:hover{
+	background-color: rgba(255,255,255,0.7);
+	border-radius: 5px;
+	color: black;
+}
+
+/*************************/
+#box-insumos{
+	width: 50%;
+	height: 80px;
+	background-color: white;
+	border: 1px solid black;
+
+}
