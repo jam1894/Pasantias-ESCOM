@@ -3,7 +3,7 @@ escom.factory('aprobadasServices',['$http', function($http){
 
     servicesaprobadas.servicesAprobada = function(url,data){
         showLoad();
-        var promise = $http.post(window.urlService +'')
+        var promise = $http.post(window.urlService + url, data)
             .success(function(data){
                 hideLoad();
                 console.log(data);
