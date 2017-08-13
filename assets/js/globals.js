@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 if(userAgent.match( /Android/i ))
 {
@@ -9,6 +10,9 @@ if(userAgent.match( /Android/i ))
 var width=$("#menu").width();
 var width_display = $(window).width();
 var height_display = $(window).height();
+=======
+window.urlService = 'http://localhost:8000/';
+>>>>>>> aa22aefa77d6d980cac8742d58aba9db480131e3
 
 function confirmDOMChanges (callback){
 	callback();
@@ -42,70 +46,6 @@ function hideLoad(){
 
 function showLoad(){
 	$(".load").show();
-}
-
-function hideWall(){
-	$(".Wall").hide();
-}
-
-function showWall(){
-	$(".Wall").show();
-}
-
-function timeWait(){
-	showWall();
-	setTimeout(function(){ 
-		hideWall();
-	}, 2000);
-}
-
-function timeDiff(h1, h2){
-	var d1= new Date("1970-01-01 "+ h1)
-	var d2= new Date("1970-01-01 "+ h2)
-	Math.abs(d1.getTime()-d2.getTime()) / 3600000;
-}
-
-function whenIsDate(date){
-	var today = new Date();
-	date = date.split('-');
-	if(today.getUTCFullYear() == date[0]){
-		if((today.getUTCMonth() + 1) == date[1]){
-			var day = parseInt(date[2])
-			if(today.getUTCDate() === day){
-				return 'hoy';
-			}
-			if((today.getUTCDate() + 1)=== day){
-				return 'mañana';
-			}
-			if((today.getUTCDate() + 2)=== day){
-				return 'pasado mañana';
-			}
-		}
-	}
-	return [date[0], date[1], date[2]].join('/');
-}
-
-function getAge(dateString) {
-	var today = new Date();
-	var birthDate = new Date(dateString);
-	var age = today.getFullYear() - birthDate.getFullYear();
-	var m = today.getMonth() - birthDate.getMonth();
-	if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-		age--;
-	}
-	return age;
-}
-
-jQuery.fn.removeAttributes = function() {
-	return this.each(function() {
-		var attributes = $.map(this.attributes, function(item) {
-			return item.name;
-		});
-		var img = $(this);
-		$.each(attributes, function(i, item) {
-			img.removeAttr(item);
-		});
-	});
 }
 
 document.addEventListener("backbutton", function (e) {
