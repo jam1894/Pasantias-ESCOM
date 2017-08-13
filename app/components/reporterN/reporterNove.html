@@ -1,0 +1,18 @@
+<div id="reportN" class="margins">
+    <span>Reporta algún problema en el laboratorio</span>
+    <br><br>
+    <select id="machine" ng-model="data.id_machine">
+        <option selected disabled>Máquina a utilizar</option>
+        <option ng-repeat = "data in machines" value="{{data.id_Equipos}}" id="{{data.id_Equipos}}">{{data.Serial}}-{{data.Equipo}}</option>
+    </select>
+    <textarea placeholder="Novedad" ng-model="data.novelty"></textarea>
+    <select id="priority" ng-model="data.id_priority">
+        <option selected disabled>Prioridad</option>
+        <option value="1">Baja</option>
+        <option value="2">Media</option>
+        <option value="3">Alta</option>
+    </select>
+    <div class="center-content">
+        <button class="button1" ng-click="saveNolvelty(data);">Enviar</button>
+    </div>
+</div>

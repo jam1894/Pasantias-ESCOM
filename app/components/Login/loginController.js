@@ -5,7 +5,7 @@ function($scope,$state,Modal) {
 	}
 
 	$scope.register = function(){
-		$state.go("registro")
+		$state.go("registroUsuarios")
 	}
 }]);
 

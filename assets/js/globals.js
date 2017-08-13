@@ -1,9 +1,9 @@
 var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 if(userAgent.match( /Android/i ))
 {
-	window.urlService = 'http://192.168.0.188:88/';
+	window.urlService = 'http://localhost:8000/';
 }else{
-	window.urlService = 'http://localhost:65085/';
+	window.urlService = 'http://localhost:8000/';
 }
 
 var width=$("#menu").width();

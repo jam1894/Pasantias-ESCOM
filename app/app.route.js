@@ -5,6 +5,10 @@ escom.config(function($stateProvider, $urlRouterProvider){
             url:            '/login',
             templateUrl:    'app/components/Login/login.html',
             controller:     'loginController'
+        }).state('registroUsuarios',{
+            url:            '/registroUsuarios',
+            templateUrl:    'app/components/registroNuevosUsuarios/registroUsuarios.html',
+            controller:     'registroUsuariosController'
         }).state('menu',{
             url:            '/menu',
             templateUrl:    'app/components/menuAdmin/menuAdmin.html',
@@ -17,10 +21,6 @@ escom.config(function($stateProvider, $urlRouterProvider){
             url:            '/registroMaquinas',
             templateUrl:    'app/components/RegistroNuevaMaquina/registroMaquinas.html',
             controller:     'registroMaquinasController'
-        }).state('menu.registroUsuarios',{
-            url:            '/registroUsuarios',
-            templateUrl:    'app/components/registroNuevosUsuarios/registroUsuarios.html',
-            controller:     'registroUsuariosController'
         }).state('menu.seguimientoEquipos',{
             url:            '/seguimientoEquipos',
             templateUrl:    'app/components/seguimientoEquipos/seguimientoEquipos.html',

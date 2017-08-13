@@ -29,6 +29,7 @@ button{
 	box-shadow: 2px 2px 2px #809A88;
 	margin-top: 10%;
 	border:2px solid black;
+	cursor : pointer;
 }
 .clear{
 	clear: both;
@@ -49,8 +50,9 @@ button{
 	background-image:url(../img/ESCOM_2.jpg);
 	background-size:cover;
 	background-repeat:no-repeat;
-	min-height: 648px;
-
+	height: 100%;
+	width: 100%;
+	position: absolute;
 }
 .marco {
 	padding:60px; 

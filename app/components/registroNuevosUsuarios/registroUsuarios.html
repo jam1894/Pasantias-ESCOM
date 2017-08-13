@@ -2,32 +2,35 @@
     <div class="background-over">
         <div class="clear">&nbsp;</div>
         <h1>Regístrate</h1>
-        <input type="text" placeholder="Nombres" required> 
+        <input type="text"  ng-model = "data.name" placeholder="Nombres" required> 
         <br>
-        <input type="text" placeholder="Apellidos" required> 
+        <input type="text" ng-model = "data.lastname" placeholder="Apellidos" required> 
         <br>
-        <select>
-            <option selected disabled>Tipo de Documento</option>
+        <input type="number" ng-model = "data.nit" placeholder="Numero de Documento" required> 
+        <br>
+        <select id="range">
+            <option selected disabled>Rango</option>
+            <option ng-repeat = "ranges in rangos" value="{{ranges.id_rango}}">{{ranges.rango}}</option>
         </select>
         <br>
-        <input type="text" placeholder="Numero de Documento" required> 
-        <br>
-        <select>
-            <option selected disabled>Rol</option>
+        <select id="study-grade">
+            <option selected disabled>Tipo de estudio</option>
+            <option value="1">Técnico</option>
+            <option value="2">Tecnologico</option>
+            <option value="3">Porfesional</option>
+            <option value="4">Maestría</option>
         </select>
         <br>
-        <select>
-            <option selected disabled>Tipo de Estudio</option>
-        </select>
+        <input type="password" ng-model = "data.password" placeholder="Contraseña" required> 
         <br>
-        <input type="text" placeholder="Usuario" required> 
-        <br>
-        <input type="password" placeholder="Contraseña" required> 
-        <br>
-        <input type="password" placeholder="Repita Contraseña" required>
+        <input type="password" id="passdValid" placeholder="Repita Contraseña" required>
         <div class="clear">&nbsp;</div> 
         <div class="clear">&nbsp;</div>
-        <button type="button" class="buttomRegistrarm">Regístrar</button>
+        <div class="terms">
+            <input type="checkbox" id="check-terms" ng-model = "data.checked"><label for="check-terms" style="color:blue;" ng-click="openTerms();"><u>Acepto términos y condiciones de uso</u></label>
+        </div>
+        <br><br>
+        <button type="button" class="buttomRegistrarm" ng-click="register(data)">Regístrar</button>
         <div class="clear">&nbsp;</div>
         <button type="button" class="buttomRegistrarm" ng-click="back();">Regresar</button>
         <div class="clear">&nbsp;</div>    
