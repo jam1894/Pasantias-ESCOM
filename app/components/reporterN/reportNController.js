@@ -31,6 +31,11 @@ function($scope,$state,NovedadesService,Modal,globals) {
                 templateUrl : 'app/components/pop-ups/popGlobal/popUpMessage.html',
                 controller : 'globalPopController'
               })
+              $scope.data = {
+                id_machine : $("#machine option")[0].value,
+                id_priority : $("#priority option")[0].value,
+                novelty : ""
+              }
           })
       }else{
         globals.set("Debes completar toda la información requerida");

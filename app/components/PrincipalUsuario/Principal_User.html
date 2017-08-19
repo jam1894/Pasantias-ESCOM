@@ -7,6 +7,7 @@
         <div class="box-classSoli" id="solicitud-{{request.Id_solicitud}}" ng-repeat = "request in requests" ng-if="request.estado_solicitud === 1">
             <span>{{request.Equipo}}</span><br>
             <span>Fecha: {{request.Fecha}} {{request.Hora_inicio}} - {{request.Hora_final}}</span>
+            <div class="delete-button" ng-click="deleteRequest(request.Id_solicitud);"><i class="fa fa-trash" aria-hidden="true"></i></div>
         </div>
         <div class="noExist" ng-if="validateR == false">
             No has realizado ninguna solicitud.

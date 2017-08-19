@@ -1,5 +1,10 @@
 window.urlService = 'http://localhost:8000/';
 
+var width=$("#menu").width();
+var width_display = $(window).width();
+var height_display = $(window).height();
+
+
 function confirmDOMChanges (callback){
 	callback();
 	var count = 0;
