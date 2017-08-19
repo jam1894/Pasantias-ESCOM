@@ -1,22 +1,7 @@
-escom.factory('NovedadesService',['$http', function($http){
-    var novedades = {};
+escom.factory('requestService',['$http', function($http){
+    var machinerequest = {};
 
-    novedades.reportNovedades = function(data,URL){
-        showLoad();
-        var promise = $http.post(window.urlService + URL,data)
-            .success(function(data){
-                hideLoad();
-                console.log(data);
-                return data;
-            })
-            .error(function(err){
-                hideLoad();
-                alert(err);
-            });
-        return promise;
-    };
-
-    novedades.reportNovedadesGet = function(data,URL){
+    machinerequest.servicesRequest = function(data,URL){
         showLoad();
         var promise = $http.get(window.urlService + URL,data)
             .success(function(data){
@@ -30,6 +15,21 @@ escom.factory('NovedadesService',['$http', function($http){
             });
         return promise;
     };
+
+    machinerequest.servicesRequestMachin = function(data,URL){
+        showLoad();
+        var promise = $http.post(window.urlService + URL,data)
+            .success(function(data){
+                hideLoad();
+                console.log(data);
+                return data;
+            })
+            .error(function(err){
+                hideLoad();
+                alert(err);
+            });
+        return promise;
+    };
     
-    return novedades;
+    return machinerequest;
 }]);

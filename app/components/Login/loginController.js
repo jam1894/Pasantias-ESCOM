@@ -7,7 +7,15 @@ function($scope,$state,Modal,loginServices) {
 			loginServices.servicesLogin(url,data).then(function(promise){
 				$scope.requests = promise.data;
 				if($scope.requests.state>=1){
-					$state.go("menu.principalAdmin");
+					sessionStorage.setItem("name",$scope.requests.message[0].nombre);
+					sessionStorage.setItem("rol",$scope.requests.message[0].id_rol);
+					sessionStorage.setItem("documento",$scope.requests.message[0].documento);
+					if($scope.requests.message[0].id_rol == 1)			
+						$state.go("menu.principalUser");
+					else if($scope.requests.message[0].id_rol == 2)
+						$state.go("menu.principalAdmin");
+					else
+						alert("El usuario no tiene permisos para ingresar");
 				}else{
 					alert($scope.requests.message);
 				}

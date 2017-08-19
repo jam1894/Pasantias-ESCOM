@@ -1,18 +1,4 @@
-<<<<<<< HEAD
-var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-if(userAgent.match( /Android/i ))
-{
-	window.urlService = 'http://localhost:8000/';
-}else{
-	window.urlService = 'http://localhost:8000/';
-}
-
-var width=$("#menu").width();
-var width_display = $(window).width();
-var height_display = $(window).height();
-=======
 window.urlService = 'http://localhost:8000/';
->>>>>>> aa22aefa77d6d980cac8742d58aba9db480131e3
 
 function confirmDOMChanges (callback){
 	callback();

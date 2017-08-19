@@ -1,4 +1,4 @@
-appescom.controller('reportController',['$scope','$state','NovedadesService','ModalService','globals',
+escom.controller('reportController',['$scope','$state','NovedadesService','ModalService','globals',
 function($scope,$state,NovedadesService,Modal,globals) {
 
 	$scope.machines = {};

@@ -1,7 +1,7 @@
-appescom.factory('requestService',['$http', function($http){
-    var machinerequest = {};
+escom.factory('homeService',['$http', function($http){
+    var home = {};
 
-    machinerequest.servicesRequest = function(data,URL){
+    home.servicesLogin = function(data,URL){
         showLoad();
         var promise = $http.get(window.urlService + URL,data)
             .success(function(data){
@@ -16,9 +16,9 @@ appescom.factory('requestService',['$http', function($http){
         return promise;
     };
 
-    machinerequest.servicesRequestMachin = function(data,URL){
+    home.servicesDelRequest = function(data,URL){
         showLoad();
-        var promise = $http.post(window.urlService + URL,data)
+        var promise = $http.delete(window.urlService + URL,data)
             .success(function(data){
                 hideLoad();
                 console.log(data);
@@ -31,5 +31,5 @@ appescom.factory('requestService',['$http', function($http){
         return promise;
     };
     
-    return machinerequest;
+    return home;
 }]);

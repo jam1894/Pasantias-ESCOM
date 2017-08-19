@@ -1,0 +1,35 @@
+<div class = "fondo">
+    <br>
+    <div class="content">
+    <br><br><br>
+        <span class="font-big">Tus solicitudes&nbsp;&nbsp;</span><i class="fa fa-clock-o" aria-hidden="true"></i>
+        <br>
+        <div class="box-classSoli" id="solicitud-{{request.Id_solicitud}}" ng-repeat = "request in requests" ng-if="request.estado_solicitud === 1">
+            <span>{{request.Equipo}}</span><br>
+            <span>Fecha: {{request.Fecha}} {{request.Hora_inicio}} - {{request.Hora_final}}</span>
+        </div>
+        <div class="noExist" ng-if="validateR == false">
+            No has realizado ninguna solicitud.
+        </div>
+        <br>
+        <span class="font-big">Aprobadas&nbsp;&nbsp;</span><i class="fa fa-check" aria-hidden="true"></i>
+        <br>
+        <div class="box-classSoli" ng-repeat = "request in requests" ng-if="request.estado_solicitud === 2">
+            <span>{{request.Equipo}}</span><br>
+            <span>Fecha: {{request.Fecha}} {{request.Hora_inicio}} - {{request.Hora_final}}</span>
+        </div>
+        <div class="noExist" ng-if="validateW == false">
+            No tienes solicitudes Aprobadas.
+        </div>
+        <br>
+        <span class="font-big">Rechazadas&nbsp;&nbsp;</span><i class="fa fa-times" aria-hidden="true"></i>
+        <br>
+        <div class="box-classSoli" ng-repeat = "request in requests" ng-if="request.estado_solicitud === 3">
+            <span>{{request.Equipo}}</span><br>
+            <span>Fecha: {{request.Fecha}} {{request.Hora_inicio}} - {{request.Hora_final}}</span>
+        </div>
+        <div class="noExist" ng-if="validateC == false">
+            No tienes solicitudes rechazadas.
+        </div>
+    </div>
+</div>

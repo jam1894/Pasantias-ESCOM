@@ -1,0 +1,42 @@
+<div class="fondo">
+    <div id="content-register">
+        <div class="registro">
+            <br><br>
+            <h1>Solicitar Equipo</h1>
+            <div class="image">
+                <img src = 'assets\img\ESCOM_2.jpg' class="images">
+            </div>
+            <br>
+            <select id="machine" ng-model="data.idequipo" ng-change="changesupplies();">
+                <option selected disabled>Máquina a utilizar</option>
+                <option ng-repeat = "data in machines" id="{{data.id_Equipos}}" value="{{data.Serial}}">{{data.Serial}}-{{data.Equipo}}</option>
+            </select>
+            <select id="insum" ng-model="data.changesupplie" ng-change="addSupplie();">
+                <option selected disabled>Insumos a utilizar</option>
+                <option ng-repeat = "supplies in insumos" id="{{supplies.Id_insumo}}">{{supplies.insumo}}</option>
+            </select>
+            <br><br>
+            <div class="horas"><span>Fecha</span></div>
+            <input type="date" ng-model="data.fecha" placeholder="Fecha" required>
+            <br><br>
+            <div class="horas"><span>Hora de Inicio</span></div>
+            <input type="time" ng-model="data.horaInicio" required> 
+            <br><br>
+            <div class="horas"><span>Hora de Salida</span></div>
+            <input type="time" ng-model="data.horaFin" required> 
+            <br><br>
+            <textarea rows="4" cols="38" ng-model="data.detalleActividad" placeholder= "Detalle de la Actividad" class="textarea"></textarea> 
+            <br><br>
+            <span>Insumos a utilizar</span>
+            <br><br>
+            <div id="box-insumos">
+                <div class="insumos" ng-repeat = "suppli in supplies" id="{{suppli.Id_insumo}}"><span>{{suppli.insumo}}</span><em ng-click = "removeitem($event);">&nbsp&nbspx</em></div>
+            </div>
+            <br>
+            <div style="text-align:center">
+                <button class="button-black" ng-click="request(data);">Solicitar</button>
+            </div>
+            <br><br>
+        </div>
+    </div>
+</div>

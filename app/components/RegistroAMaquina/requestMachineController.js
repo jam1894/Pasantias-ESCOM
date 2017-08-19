@@ -1,4 +1,4 @@
-appescom.controller('requestMachineController',['$scope','$state','requestService','ModalService','globals',
+escom.controller('requestMachineController',['$scope','$state','requestService','ModalService','globals',
 function($scope,$state,requestService,Modal,globals) {
 
 	$scope.machines = {};
@@ -25,6 +25,7 @@ function($scope,$state,requestService,Modal,globals) {
     	var id = $scope.data.idequipo.split("-")[0];
 		  url = "maquinas/suppliexm/"+id;
 	   	data = {};
+      $scope.insumos = {};
       	requestService.servicesRequest(data,url).then(function(promise){
             var result = promise.data;
             if(result.state == 0)
@@ -32,6 +33,9 @@ function($scope,$state,requestService,Modal,globals) {
             else
               $scope.insumos = result.response;
       	})
+
+      $("#box-insumos > div").remove();
+      $scope.supplies = [];
     }
     
     $scope.request = function(data){

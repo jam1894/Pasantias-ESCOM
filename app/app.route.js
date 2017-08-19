@@ -33,6 +33,18 @@ escom.config(function($stateProvider, $urlRouterProvider){
             url:            '/aprobada',
             templateUrl:    'app/components/formAprobadas/form_aprobadas.html',
             controller:     'aprobadasController'
+        }).state('menu.principalUser',{
+            url:            '/principalUser',
+            templateUrl:    'app/components/PrincipalUsuario/Principal_User.html',
+            controller:     'homeController'
+        }).state('menu.reporteNov',{
+            url:            '/novedades',
+            templateUrl:    'app/components/reporterN/reporterNove.html',
+            controller:     'reportController'
+        }).state('menu.pedirMaquina',{
+            url:            '/SolicitarMaquina',
+            templateUrl:    'app/components/RegistroAMaquina/Registro_Maquinas.html',
+            controller:     'requestMachineController'
         });
         
         $urlRouterProvider.otherwise("/login");
