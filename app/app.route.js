@@ -21,10 +21,10 @@ escom.config(function($stateProvider, $urlRouterProvider){
             url:            '/registroMaquinas',
             templateUrl:    'app/components/RegistroNuevaMaquina/registroMaquinas.html',
             controller:     'registroMaquinasController'
-        }).state('menu.seguimientoEquipos',{
-            url:            '/seguimientoEquipos',
-            templateUrl:    'app/components/seguimientoEquipos/seguimientoEquipos.html',
-            controller:     'seguimientoEquiposControllermenu.aprobadas'
+        }).state('menu.mantenimientos',{
+            url:            '/mantenimientos',
+            templateUrl:    'app/components/mantenimientos/mantenimientos.html',
+            controller:     'mantenimientosController'
         }).state('menu.Reportes',{
             url:            '/Reportes',
             templateUrl:    'app/components/Reportes/generacionReportes.html',
@@ -45,9 +45,13 @@ escom.config(function($stateProvider, $urlRouterProvider){
             url:            '/SolicitarMaquina',
             templateUrl:    'app/components/RegistroAMaquina/Registro_Maquinas.html',
             controller:     'requestMachineController'
+        }).state('menu.registroUsuarios',{
+            url:            '/registroUsuarios',
+            templateUrl:    'app/components/registroNuevosUserAdmin/registroUsuariosAdmin.html',
+            controller:     'registroUsuariosAdminController'
         });
         
-        $urlRouterProvider.otherwise("/login");
+        $urlRouterProvider.otherwise("/menu");
 
 }); 
 

@@ -1,20 +1,86 @@
 <div class="fondo">
     <div class="contenido">
-    <div style="margin-top:70px;"></div>
+    <div style="margin-top:100px;"></div>
         <div style="text-align:center;">
-            <div>
-            <select>
-                <option selected disabled>Escoja el reporte a generar</option>
-                <option value="1">Reporte 1</option>
-                <option value="2">Reporte 2</option>
-                <option value="3">Reporte 3</option>
-            </select>
-            <span>Exportar a:</span>
-            <div>
-                <button class="button2">Generar</button>
+            <div class="table" style="width:80%;">
+                <div class="table-cell">
+                    <select id="reportid" ng-model="data.report" ng-change="validateReport(data.report);" style="width:95%;">
+                        <option selected disabled>Escoja el reporte a generar</option>
+                        <option value="1">Insumos</option>
+                        <option value="2">Solicitudes</option>
+                        <option value="3">Novedades</option>
+                    </select><br><br>
+                </div>
+                <div class="table-cell">
+                    <button class="button2" ng-click = "getReport(data);" style="width:85%;">Generar</button>
+                </div>
+                <div class="table-cell" style="vertical-align:middle;">
+                    <div id="excelbutton" ng-click="exportReport();"></div>
+                </div>
+             </div>
+            <div class="table" style="width:80%;" ng-show = "reports">
+                <div class="table-cell">
+                    <label>Fecha inicial</label><br>
+                    <input type="date" ng-model="data.datei" name="" style="width:95%;"><br><br>
+                </div>
+                <div class="table-cell">
+                    <label>Fecha final</label><br>
+                    <input type="date" name="" ng-model="data.datef" style="width:95%;">
+                </div>
             </div>
-            </div>
+            <input type="text" name="" placeholder="Filtrar" ng-model="search.Equipo"><br><br>
+            <table id="reportsGen">
+                <tr class="tr-tittle" ng-if="data.report == 1">
+                    <td ng-repeat="tittle in keysJsonVal">{{tittle}}</td>
+                </tr>
+                <tr class="tr-tittle" ng-if="data.report == 3">
+                    <td ng-repeat="tittle in keysJsonVal">{{tittle}}</td>
+                </tr>
+                <tr class="tr-tittle" ng-if="data.report == 2">
+                    <td>ID solicitud</td>
+                    <td>Equipo</td>
+                    <td>Usuario</td>
+                    <td>Fecha</td>
+                    <td>Hora inicio</td>
+                    <td>Hora fin</td>
+                    <td>Actividad</td>
+                    <td>Estado</td>
+                    <td>Img entregada</td>
+                    <td>Img devuelta</td>
+                    <td>Comentario Entregada</td>
+                    <td>Comentario devuelta</td>
+                </tr>
+                <tr ng-repeat="requests in request | filter:search.insumo" ng-if="data.report == 1">
+                    <td>{{requests.Id_insumo}}</td>
+                    <td>{{requests.codigo}}</td>
+                    <td>{{requests.insumo}}</td>
+                    <td>{{requests.cantidad}}</td>
+                </tr>
+                <tr ng-repeat="requests in request  | filter:search.nombre | filter:search.Equipo" ng-if="data.report == 2">
+                    <td>{{requests.Id_solicitud}}</td>
+                    <td>{{requests.Equipo}}</td>
+                    <td>{{requests.nombre}} {{requests.apellido}}</td>
+                    <td>{{requests.Fecha}}</td>
+                    <td>{{requests.Hora_inicio}}</td>
+                    <td>{{requests.Hora_final}}</td>
+                    <td>{{requests.Detalles_Actividad}}</td>
+                    <td>{{requests.estado_solicitud == 1 ? "Solicitado" : requests.estado_solicitud == 2 ? "Aprobado" : requests.estado_solicitud == 3 ? "Rechazado" : requests.estado_solicitud == 4 ? "Entregado" : requests.estado_solicitud == 5 ? "Devuelto" : "" }}</td>
+                    <td></td>
+                    <td></td>
+                    <td>{{requests.comentario_ent}}</td>
+                    <td>{{requests.comentario_dev}}</td>
+                </tr>
+                <tr ng-repeat="requests in request | filter:search.Equipo" ng-if="data.report == 3">
+                    <td>{{requests.Serial}}</td>
+                    <td>{{requests.Id_novedad}}</td>
+                    <td>{{requests.Equipo}}</td>
+                    <td>{{requests.Fecha}}</td>
+                    <td>{{requests.Novedad}}</td>
+                    <td>{{requests.prioridad}}</td>
+                </tr>
+            </table>
         </div>
+        <div style="margin-top:30px;"></div>
     </div>
 </div>
 

@@ -1,9 +1,9 @@
-escom.factory('seguimientoServices',['$http', function($http){
-    var servicesSeguimiento = {};
+escom.factory('addinsumosServices',['$http', function($http){
+    var servicesinsumos = {};
 
-    servicesSeguimiento.servicesSeguimientoEquipos = function(url,data){
+    servicesinsumos.servicesInsumos = function(url,data){
         showLoad();
-        var promise = $http.post(window.urlService +'')
+        var promise = $http.post(window.urlService + url,data)
             .success(function(data){
                 hideLoad();
                 console.log(data);
@@ -16,5 +16,5 @@ escom.factory('seguimientoServices',['$http', function($http){
         return promise;
     };
 
-    return servicesSeguimiento;
+    return servicesinsumos;
 }]);

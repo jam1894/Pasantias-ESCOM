@@ -1,7 +1,7 @@
-escom.factory('principalServices',['$http', function($http){
-    var servicesprincipal = {};
+escom.factory('solAprobadasServices',['$http', function($http){
+    var solicitudes = {};
 
-    servicesprincipal.servicesPrincipal = function(url,data){
+    solicitudes.servicesPrincipal = function(url,data){
         showLoad();
         var promise = $http.post(window.urlService +'')
             .success(function(data){
@@ -16,7 +16,7 @@ escom.factory('principalServices',['$http', function($http){
         return promise;
     };
 
-    servicesprincipal.servicesPrincipalget = function(url,data){
+    solicitudes.servicesPrincipalget = function(url,data){
         showLoad();
         var promise = $http.get(window.urlService + url)
             .success(function(data){
@@ -31,7 +31,7 @@ escom.factory('principalServices',['$http', function($http){
         return promise;
     };
 
-    servicesprincipal.servicesPrincipalput = function(url,data){
+    solicitudes.servicesPrincipalput = function(url,data){
         showLoad();
         var promise = $http.put(window.urlService + url,data)
             .success(function(data){
@@ -46,5 +46,5 @@ escom.factory('principalServices',['$http', function($http){
         return promise;
     };
 
-    return servicesprincipal;
+    return solicitudes;
 }]);

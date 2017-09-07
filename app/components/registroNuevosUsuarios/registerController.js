@@ -21,11 +21,11 @@ function($scope,$state,RegisterService,Modal,globals) {
 			            var result = promise.data;
 			            console.log(result);
 			            if(result.state == 1){
-			            	localStorage.clear();
-			            	var datals = result.data[0];
-							datals = JSON.stringify(datals)
-							localStorage.setItem("user",datals);
-			            	$state.go('menu.home');
+			            	sessionStorage.clear();
+							sessionStorage.setItem("name",result.data[0].nombre);
+							sessionStorage.setItem("rol",result.data[0].id_rol);
+							sessionStorage.setItem("documento",result.data[0].documento);
+			            	$state.go("menu.principalUser");
 			            }else{
 				            globals.set(result.message);
 				            Modal.showModal({

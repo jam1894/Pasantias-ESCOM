@@ -8,8 +8,6 @@ function($scope,$state,requestService,Modal,globals) {
     "changesupplie" : $("#insum option")[0].value
   };
   $scope.supplies = [];
-  
-  var dataUser = JSON.parse(localStorage.getItem("user"));
 
 	function getMachine(){
 		url = "maquinas";
@@ -44,7 +42,7 @@ function($scope,$state,requestService,Modal,globals) {
         if(data.fecha != undefined && data.horaInicio != undefined && data.horaFin != undefined && data.detalleActividad.trim() != ""){
           if(corverthour(data.horaInicio) <= corverthour(data.horaFin)){
             url = "solicitudes";
-            data["idpersona"] = dataUser.documento;
+            data["idpersona"] = sessionStorage.getItem("documento");
             data["supplies"] = [];
             data["estado_solicitud"] = 1;
             data["img_entregado"] = '';

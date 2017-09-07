@@ -10,6 +10,12 @@ input,select,textarea{
 	border-radius: 5px;
 	box-shadow: inset 0px 5px 10px #d6d3d3;
 	border: 1px solid #969595;
+	padding: 0px 5px;
+}
+
+input[type="file"]{
+	box-shadow: none;
+	border: 0px;
 }
 
 textarea{
@@ -27,6 +33,30 @@ button{
 	border:2px solid black;
 	cursor : pointer;
 }
+
+.button-font{
+	
+font-size: 45px !important;
+	
+color: #f5c000;
+	
+right: 60px !important;
+}
+.button-fontbad{
+	
+font-size: 45px !important;
+	
+color: #df0d0d;
+}
+.left-text{	
+	text-align: left;
+}
+
+.left-text > textarea{
+	width: 80%;
+}
+.upload-icon{cursor: pointer;}
+
 .clear{
 	clear: both;
 }
@@ -105,6 +135,14 @@ button{
 	background-color: white;
 	min-width: 200px;
 }
+
+.button-small{
+	
+width: 40%;
+	
+margin-left: 20px;
+}
+
 .button {
 	position: relative;
 	float: left;
@@ -116,6 +154,7 @@ button{
 	min-width: 200px;
 	cursor: pointer;
 }
+
 .button1 {
 	position: relative;
 	border-radius: 10px;
@@ -215,8 +254,11 @@ button{
 }
 .images{
 	width: 50%;
+	height: auto;
 	border-radius: 15px;
 	border-style: groove;
+	max-height: 200px;
+	max-width: 400px;
 }
 /****************************************************/
 body{
@@ -354,7 +396,7 @@ font-weight: bold;
    background-image: url('../img/loading.gif');
    background-size : 100%;
    background-position : center;
-   width: 80%;
+   width: 20%;
    height: 100%;
    background-repeat: no-repeat;
    margin : auto;
@@ -373,4 +415,42 @@ font-weight: bold;
     border-radius: 10px;
     background-color: white;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+table{
+	width: 95%;
+	height: auto;
+	border-radius: 5px;
+	margin: auto;
+	border-collapse: collapse;
+}
+
+tr:nth-child(even) {
+    background-color: #e7ffcf;
+}
+
+td{
+	border: 3px solid #73cb1b;
+	padding: 5px 2px;
+	border-radius: 5px;
+}
+
+.tr-tittle > td{
+	background-color: #a4e265;
+}
+
+#excelbutton{
+	
+background-image: url("../img/excel.png");
+	
+width: 40px;
+	
+height: 30px;
+	
+background-size: 76%;
+	
+background-repeat: no-repeat;
+	
+background-position: left;
+cursor: pointer;
 }

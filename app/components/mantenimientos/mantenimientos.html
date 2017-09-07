@@ -1,0 +1,51 @@
+<div class="fondo">
+    <div class="contenido">
+    <div style="margin-top:70px;"></div>
+        <div id="inicio-content">
+            <span class="title font-medium">Mantenimientos Urgentes</span>
+            <!--Solicitudes a vencer-->
+            <div class="box-classSoli" id="solicitud-{{equipo.Id_solicitud}}" ng-repeat = "equipo in equipos" ng-if="equipo.TiempoMantenimiento - equipo.TiempoUsoActual <= 0">
+                <div>
+                    <span class="font-medium">{{equipo.Equipo}}</span><br>
+                    <span class="font-medium">Horas uso actual: {{equipo.TiempoUsoActual}}</span><br>
+                    <span>Serial : {{equipo.Serial}}</span><br>
+                    <span>Horas para mantenimiento: {{equipo.TiempoMantenimiento}}</span>
+                </div>
+                <i class="fa fa-check-circle button-font botones" aria-hidden="true" ng-click="okMantenimientos(equipo.Serial);"></i>
+            </div>
+            <div class="noExist" ng-if="ValidateManU == false">
+                No hay mantenimientos urgentes por realizar.
+            </div>
+            <br>
+            <span class="title font-medium">Próximos Mantenimientos</span>
+            <!--Solicitudes a vencer-->
+            <div class="box-classSoli" id="solicitud-{{equipo.Id_solicitud}}" ng-repeat = "equipo in equipos" ng-if="equipo.TiempoMantenimiento - equipo.TiempoUsoActual > 0 && equipo.TiempoMantenimiento - equipo.TiempoUsoActual <= 5">
+                <div>
+                    <span class="font-medium">{{equipo.Equipo}}</span><br>
+                    <span class="font-medium">Horas uso actual: {{equipo.TiempoUsoActual}}</span><br>
+                    <span>Serial : {{equipo.Serial}}</span><br>
+                    <span>Horas para mantenimiento: {{equipo.TiempoMantenimiento}}</span>
+                </div>
+                <i class="button-font fa fa-check-circle botones" aria-hidden="true" ng-click="okMantenimientos(equipo.Serial);"></i>
+            </div>
+            <div class="noExist" ng-if="validateMan == false">
+                No hay mantenimientos próximos por realizar.
+            </div>
+            <br>
+            <span class="title font-medium">Novedades</span>
+            <!--Solicitudes a vencer-->
+            <div class="box-classSoli" id="solicitud-{{novedad.Id_solicitud}}" ng-repeat = "novedad in novedades">
+                <div>
+                    <span class="font-medium">{{novedad.Equipo}}</span><br>
+                    <span>Fecha : {{novedad.Fecha}}</span><br>
+                    <span>prioridad : {{novedad.prioridad}}</span><br>
+                    <span>Novedad: {{novedad.Novedad}}</span>
+                </div>
+                <i class="button-font fa fa-check-circle botones" aria-hidden="true" ng-click="okNovedades(novedad.Id_novedad);"></i>
+            </div>
+            <div class="noExist" ng-if="ValidateNov == false">
+                No hay novedades.
+            </div>
+        </div>             
+    </div>
+</div>

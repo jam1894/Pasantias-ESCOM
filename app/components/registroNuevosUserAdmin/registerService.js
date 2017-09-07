@@ -1,9 +1,9 @@
-escom.factory('registroMaquinaServices',['$http', function($http){
-    var servicesregisMaquina = {};
+escom.factory('RegisterAdminService',['$http', function($http){
+    var register = {};
 
-    servicesregisMaquina.servicesRegistroMaquina = function(url,data){
+    register.servicesLogin = function(data,URL){
         showLoad();
-        var promise = $http.get(window.urlService + url, data)
+        var promise = $http.post(window.urlService + URL,data)
             .success(function(data){
                 hideLoad();
                 console.log(data);
@@ -11,14 +11,14 @@ escom.factory('registroMaquinaServices',['$http', function($http){
             })
             .error(function(err){
                 hideLoad();
-                console.log("No tienes conexión a internet" + err);
+                alert(err);
             });
         return promise;
     };
 
-    servicesregisMaquina.servicesRegistroMaquinaPost = function(url,data){
+    register.servicesLoginGet = function(data,URL){
         showLoad();
-        var promise = $http.post(window.urlService + url, data)
+        var promise = $http.get(window.urlService + URL,data)
             .success(function(data){
                 hideLoad();
                 console.log(data);
@@ -26,14 +26,14 @@ escom.factory('registroMaquinaServices',['$http', function($http){
             })
             .error(function(err){
                 hideLoad();
-                console.log("No tienes conexión a internet" + err);
+                alert(err);
             });
         return promise;
     };
 
-    servicesregisMaquina.servicesRegistroMaquinaDelete = function(url){
+    register.servicesusersPut = function(data,URL){
         showLoad();
-        var promise = $http.delete(window.urlService + url)
+        var promise = $http.put(window.urlService + URL,data)
             .success(function(data){
                 hideLoad();
                 console.log(data);
@@ -41,14 +41,14 @@ escom.factory('registroMaquinaServices',['$http', function($http){
             })
             .error(function(err){
                 hideLoad();
-                console.log("No tienes conexión a internet" + err);
+                alert(err);
             });
         return promise;
     };
 
-    servicesregisMaquina.servicesRegistroMaquinaPut = function(url,data){
+    register.servicesusersDelete = function(data,URL){
         showLoad();
-        var promise = $http.put(window.urlService + url, data)
+        var promise = $http.delete(window.urlService + URL,data)
             .success(function(data){
                 hideLoad();
                 console.log(data);
@@ -56,10 +56,10 @@ escom.factory('registroMaquinaServices',['$http', function($http){
             })
             .error(function(err){
                 hideLoad();
-                console.log("No tienes conexión a internet" + err);
+                alert(err);
             });
         return promise;
     };
 
-    return servicesregisMaquina;
+    return register;
 }]);

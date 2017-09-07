@@ -3,59 +3,94 @@
         <div style="margin-top:70px;"></div>
         <div>
             <div id="clear">&nbsp;</div>
-            <div class="table">
-                <div class="table-cell">
-                    <span id="text">Nombre Maquina</span>
-                </div>
-                <div class="table-cell">
-                    <input type="text" name="fname" placeholder="Digite nombre maquina">
-                </div>
-            </div> 
-            <br>
-            <br>
             <center><div>
-                <img src='assets\img\ESCOM_2.jpg' class="images">
-            </div></center>
-            <div class="table">
-                <div class="table-cell">
-                    <span id="text">Modelo</span>
-                </div>
-                <div class="table-cell">
-                    <input type="text" name="fname" placeholder="Digite modelo"> 
-                </div>
-            </div>  
-            <br>
+                <img ng-src='{{img}}' id="image" class="images">
+            </div>
+             <input type="file" name="file" accept="image/jpeg, image/png" id="file" ng-model="data.image">
+            </center>
             <br>
             <div class="table">
                 <div class="table-cell">
                     <span id="text">Serial</span>
                 </div>
                 <div class="table-cell">
-                    <input type="text" name="fname" placeholder="Digite serial">
+                    <input type="text" id="serial-id" name="fname" placeholder="Digite serial" ng-model="data.serial" ng-blur="validateMachine(data.serial);">
                 </div>
-            </div>   
-            <br>
+            </div>  
             <br>
             <div class="table">
                 <div class="table-cell">
-                    <span id="text">Marca</span>
+                    <span id="text">Modelo</span>
                 </div>
                 <div class="table-cell">
-                    <input type="text" name="fname" placeholder="Digite marca">   
+                    <input type="text" id="model-id" ng-model="data.model" name="fname" placeholder="Digite modelo"> 
                 </div>
-            </div>
+            </div>  
             <br>
+            <div class="table">
+                <div class="table-cell">
+                    <span id="text">Nombre Maquina</span>
+                </div>
+                <div class="table-cell">
+                    <input type="text" id="machine-id" ng-model="data.machine" name="fname" placeholder="Digite nombre maquina">
+                </div>
+            </div> 
+            <br>
+            <div class="table">
+                <div class="table-cell">                    
+                    <span id="text">Marca</span>
+                </div>
+                <select id="choose-marca">
+                    <option selected disabled>Escoge la marca</option>
+                    <option ng-repeat = "mark in marks" value="{{mark.id_marca}}">{{mark.marca}}</option>
+                </select>
+                 <button class="button-small button2" ng-click="addmarca();">Agregar Marca</button>
+            </div>
             <br>
             <div class="table">
                 <div class="table-cell">                    
                     <span id="text">Estado</span>
                 </div>
-                <div class="table-cell"> 
-                    <input type="text" name="fname" placeholder="Estado de la Maquina">
-                </div>
-            </div>   
+                <select id="state-id" ng-model="data.state">
+                    <option value="Disponible">Disponible</option>
+                    <option value="Inhabilitado">Inhabilitado</option>
+                </select>
+            </div>
             <br>
-            <center><button id="buttomRegistrarm">Registrar</button></center>
+            <div class="table">
+                <div class="table-cell">                    
+                    <span id="text">Horas de mantenimiento</span>
+                </div>
+                <div class="table-cell"> 
+                    <input type="number" id="timeMaintenance-id" ng-model="data.timeMaintenance" placeholder="Horas para mantenimiento">
+                </div>
+            </div> 
+             <br>
+            <div class="table">
+                <div class="table-cell">                    
+                    <span id="text">Horas utilizado</span>
+                </div>
+                <div class="table-cell"> 
+                    <input type="number" id="timeUseCurrent-id" ng-model="data.timeUseCurrent" placeholder="Horas para mantenimiento">
+                </div>
+            </div> 
+             <br>
+            <div class="table">
+                <div class="table-cell">                    
+                    <span id="text">Insumos</span>
+                </div>
+                <select id="insum" ng-model="data.changesupplie" ng-change="addSupplie();">
+                    <option selected disabled>Insumos a relacionar</option>
+                    <option ng-repeat = "supplies in supplieget" id="{{supplies.Id_insumo}}">{{supplies.insumo}}</option>
+                </select>
+                <button class="button-small button2" ng-click="addinsumo();">Agregar insumo</button>
+            </div>
+            <br>
+            <div id="box-insumos">
+                <div class="insumos" ng-repeat = "suppli in supplies" id="{{suppli.Id_insumo}}"><span>{{suppli.insumo}}</span><em ng-click = "removeitem($event);">&nbsp&nbspx</em></div>
+            </div>
+            <br>
+            <center><button class="button1" ng-click="SaveorUpdate(data);">{{actionIU == "update" ? "Actualizar" : "Guardar"}}</button></center>
             <div class="clear">&nbsp;</div>
         </div>
     </div>    

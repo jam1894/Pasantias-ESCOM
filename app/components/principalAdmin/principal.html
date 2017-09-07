@@ -2,39 +2,81 @@
     <div class="contenido">
     <div style="margin-top:70px;"></div>
         <div id="inicio-content">
-            <span class="title font-medium">Solicitudes pendientes</span>
-            <div class="box-classSoli" ng-click ="formOK();">
-                <span class="font-medium">Escanner 3D</span><br>
-                <span>Fecha : 15-04-2016 8:00 am</span><br>
-                <span>Miguel Gonzalez</span>
-                <div id="box-solicitudesP" class="botones"></div>
-                <div id="box-solicitudesD" class="botones"></div>
+            <span class="title font-medium">Solicitudes pendientes de aprobación</span><br>
+            <!--Solicitudes a vencer-->
+            <div class="important-sol box-classSoli" id="solicitud-{{request.Id_solicitud}}" ng-repeat = "request in requests" ng-if="request.estado_solicitud === 1 && request.days >= 0 && request.days <= 3">
+                <div ng-click="soliciPenAprob(request.Id_solicitud);">
+                    <span class="font-medium">{{request.Equipo}}</span><br>
+                    <span>Fecha : {{request.Fecha}} {{request.Hora_inicio}} - {{request.Hora_final}}</span><br>
+                    <span>{{request.nombre}} {{request.apellido}}</span>
+                </div>
+                <i class="fa fa-check-circle button-font botones" ng-click="validarSol(request.Id_solicitud,2);"></i>
+                <i class="fa fa-times-circle button-fontbad botones" ng-click="validarSol(request.Id_solicitud,3);"></i>
+            </div>
+            <!--Solicitudes Pendientes aprobar-->
+            <div class="box-classSoli" id="solicitud-{{request.Id_solicitud}}" ng-repeat = "request in requests" ng-if="request.estado_solicitud === 1 && request.days > 3">
+                <div ng-click="soliciPenAprob(request.Id_solicitud);">
+                    <span class="font-medium">{{request.Equipo}}</span><br>
+                    <span>Fecha : {{request.Fecha}} {{request.Hora_inicio}} - {{request.Hora_final}}</span><br>
+                    <span>{{request.nombre}} {{request.apellido}}</span>
+                </div>
+                <i class="fa fa-check-circle button-font botones" ng-click="validarSol(request.Id_solicitud,2);"></i>
+                <i class="fa fa-times-circle button-fontbad botones" ng-click="validarSol(request.Id_solicitud,3);"></i>
+            </div>
+            <div class="noExist" ng-if="validateSp == false">
+                No hay solicitudes pendientes por aprobar.
             </div>
             <span class="title font-medium">Solicitudes aprobadas</span>
-            <div  class="box-classSoli">
-                <span class="font-medium">Escanner 3D</span><br>
-                <span>Fecha : 15-04-2016 8:00 am</span><br>
-                <span>Miguel Gonzalez</span>
-                <div id="box-solicitudesA" class="botones"></div>
+            <div class="box-classSoli" id="solicitud-{{request.Id_solicitud}}" ng-repeat = "request in requests" ng-if="request.estado_solicitud === 2">
+                <div ng-click="solicitudesApro(request.Id_solicitud);">
+                    <span class="font-medium">{{request.Equipo}}</span><br>
+                    <span>Fecha : {{request.Fecha}} {{request.Hora_inicio}} - {{request.Hora_final}}</span><br>
+                    <span>{{request.nombre}} {{request.apellido}}</span>
+                    <!--<div id="box-solicitudesA" class="botones"></div>-->
+                </div>
             </div>
-            <span class="title font-medium">Solicitudes Entregadas</span>
-            <div class="box-classSoli">
-                <span class="font-medium">Escanner 3D</span><br>
-                <span>Fecha : 15-04-2016 8:00 am</span><br>
-                <span>Miguel Gonzalez</span>
+            <div class="noExist" ng-if="validateA == false">
+                No has aprobado solicitudes recientemente.
             </div>
-            <span class="title font-medium">Solicitudes Devueltas</span>
-            <div class="box-classSoli">
-                <span class="font-medium">Escanner 3D</span><br>
-                <span>Fecha : 15-04-2016 8:00 am</span><br>
-                <span>Miguel Gonzalez</span>
-                <div id="box-solicitudesD" class="botones"></div>
+            <span class="title font-medium">Solicitudes Rechazadas</span>
+            <div class="box-classSoli" id="solicitud-{{request.Id_solicitud}}" ng-repeat = "request in requests" ng-if="request.estado_solicitud === 3 && request.days >= -3">
+                <div ng-click="solicitudesRechaz(request.Id_solicitud);">
+                    <span class="font-medium">{{request.Equipo}}</span><br>
+                    <span>Fecha : {{request.Fecha}} {{request.Hora_inicio}} - {{request.Hora_final}}</span><br>
+                    <span>{{request.nombre}} {{request.apellido}}</span>
+                    <!--<div id="box-solicitudesD" class="botones"></div>-->
+                </div>
             </div>
-            <span class="title font-medium">Mantenimientos pendientes</span>
+            <div class="noExist" ng-if="validateR == false">
+                No has rechazado solicitudes recientemente.
+            </div>
+            <span class="title font-medium">Entregadas</span>
+            <div class="box-classSoli" id="solicitud-{{request.Id_solicitud}}" ng-repeat = "request in requests" ng-if="request.estado_solicitud === 4">
+                <div ng-click="solicitudesEntre(request.Id_solicitud);">
+                    <span class="font-medium">{{request.Equipo}}</span><br>
+                    <span>Fecha : {{request.Fecha}} {{request.Hora_inicio}} - {{request.Hora_final}}</span><br>
+                    <span>{{request.nombre}} {{request.apellido}}</span>
+                </div>
+            </div>
+            <div class="noExist" ng-if="validateE == false">
+                No has hecho entrega de equipos recientemente.
+            </div>
+            <span class="title font-medium">Devueltas</span>
+            <div class="box-classSoli" id="solicitud-{{request.Id_solicitud}}" ng-repeat = "request in requests" ng-if="request.estado_solicitud === 5 && request.days >= -3">
+                <div ng-click="solicitudesDevuel();">
+                    <span class="font-medium">{{request.Equipo}}</span><br>
+                    <span>Fecha : {{request.Fecha}} {{request.Hora_inicio}} - {{request.Hora_final}}</span><br>
+                    <span>{{request.nombre}} {{request.apellido}}</span>
+                </div>
+            </div>
+            <div class="noExist" ng-if="validateD == false">
+                No ha habido devolución de máquinas recientemente.
+            </div>
+            <!--<span class="title font-medium">Mantenimientos pendientes</span>
             <div class="box-classSoli">
                 <span class="font-medium">Escanner 3D</span><br>
                 <span>Fecha Mantenimiento: 15-04-2016 8:00 am</span>
-            </div>
+            </div>-->
             <div id="clear">&nbsp;</div>
         </div>
     </div>
