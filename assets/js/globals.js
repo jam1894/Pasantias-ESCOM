@@ -1,6 +1,6 @@
-window.urlService = 'http://localhost:8000/';
+window.urlService = 'http://app.mincivil.net:90/public/';
 
-window.urlImages = "http://127.0.0.1:8000/uploads/images/";
+window.urlImages = "http://app.mincivil.net:90/public/uploads/images/";
 
 var width=$("#menu").width();
 var width_display = $(window).width();
