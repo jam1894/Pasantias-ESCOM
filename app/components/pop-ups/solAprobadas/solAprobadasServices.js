@@ -1,4 +1,4 @@
-escom.factory('solAprobadasServices',['$http', function($http){
+escom.factory('solAprobadasServices',['$http','globals','ModalService', function($http,globals,Modal){
     var solicitudes = {};
 
     solicitudes.servicesPrincipal = function(url,data){
@@ -6,12 +6,15 @@ escom.factory('solAprobadasServices',['$http', function($http){
         var promise = $http.post(window.urlService +'')
             .success(function(data){
                 hideLoad();
-                console.log(data);
                 return data;
             })
             .error(function(err){
                 hideLoad();
-                console.log("No tienes conexión a internet" + err);
+                globals.set(err);
+                Modal.showModal({
+                    templateUrl : 'app/components/pop-ups/popGlobal/popUpMessage.html',
+                    controller : 'globalPopController'
+                })
             });
         return promise;
     };
@@ -21,12 +24,15 @@ escom.factory('solAprobadasServices',['$http', function($http){
         var promise = $http.get(window.urlService + url)
             .success(function(data){
                 hideLoad();
-                console.log(data);
                 return data;
             })
             .error(function(err){
                 hideLoad();
-                console.log("No tienes conexión a internet" + err);
+                globals.set(err);
+                Modal.showModal({
+                    templateUrl : 'app/components/pop-ups/popGlobal/popUpMessage.html',
+                    controller : 'globalPopController'
+                })
             });
         return promise;
     };
@@ -36,12 +42,15 @@ escom.factory('solAprobadasServices',['$http', function($http){
         var promise = $http.put(window.urlService + url,data)
             .success(function(data){
                 hideLoad();
-                console.log(data);
                 return data;
             })
             .error(function(err){
                 hideLoad();
-                console.log("No tienes conexión a internet" + err);
+                globals.set(err);
+                Modal.showModal({
+                    templateUrl : 'app/components/pop-ups/popGlobal/popUpMessage.html',
+                    controller : 'globalPopController'
+                })
             });
         return promise;
     };

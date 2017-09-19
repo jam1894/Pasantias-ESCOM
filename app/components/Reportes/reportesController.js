@@ -65,6 +65,14 @@ function($scope,$state,Modal,reportesServices,globals) {
   			$scope.reports = false;
   	}
 
+  	$scope.openImage = function(image){
+  		globals.set(image);
+		Modal.showModal({
+        	templateUrl : 'app/components/pop-ups/image/image.html',
+        	controller : 'imageController'
+      	});
+  	}
+
 	$scope.exportReport = function()
 
 	{

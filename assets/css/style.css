@@ -16,6 +16,7 @@ input,select,textarea{
 input[type="file"]{
 	box-shadow: none;
 	border: 0px;
+	cursor: pointer;
 }
 
 textarea{
@@ -141,6 +142,11 @@ color: #df0d0d;
 width: 40%;
 	
 margin-left: 20px;
+}
+
+.button-exsmall
+	width: 40%;
+	margin-left: 20px;
 }
 
 .button {
@@ -418,7 +424,7 @@ font-weight: bold;
 }
 
 table{
-	width: 95%;
+	width: 90%;
 	height: auto;
 	border-radius: 5px;
 	margin: auto;
@@ -431,8 +437,9 @@ tr:nth-child(even) {
 
 td{
 	border: 3px solid #73cb1b;
-	padding: 5px 2px;
+	padding: 2px 1px;
 	border-radius: 5px;
+	width: 10px;
 }
 
 .tr-tittle > td{
@@ -440,17 +447,40 @@ td{
 }
 
 #excelbutton{
-	
-background-image: url("../img/excel.png");
-	
-width: 40px;
-	
-height: 30px;
-	
-background-size: 76%;
-	
-background-repeat: no-repeat;
-	
-background-position: left;
-cursor: pointer;
+	background-image: url("../img/excel.png");	
+	width: 40px;	
+	height: 30px;	
+	background-size: 76%;	
+	background-repeat: no-repeat;	
+	background-position: left;
+	cursor: pointer;
+}
+
+@font-face {
+    font-family: myFirstFont;
+    src: url(sansation_light.woff);
+}
+
+.alert{
+	color : #a80c0c;
+	font-size : 28px;
+	text-align : left;
+}
+
+a{
+	cursor: pointer;
+	text-decoration: underline;
+	color: rebeccapurple;
+}
+
+.table-scroll{
+	width: 95%;
+	overflow-x: scroll;
+	padding: 10px;
+	height: 350px;
+}
+
+.size-image{
+	max-width: 500px;
+	max-height: 500px;
 }

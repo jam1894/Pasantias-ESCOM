@@ -51,7 +51,7 @@ escom.config(function($stateProvider, $urlRouterProvider){
             controller:     'registroUsuariosAdminController'
         });
         
-        $urlRouterProvider.otherwise("/menu");
+        $urlRouterProvider.otherwise("/login");
 
 }); 
 

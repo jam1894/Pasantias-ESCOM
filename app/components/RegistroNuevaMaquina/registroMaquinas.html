@@ -6,7 +6,10 @@
             <center><div>
                 <img ng-src='{{img}}' id="image" class="images">
             </div>
-             <input type="file" name="file" accept="image/jpeg, image/png" id="file" ng-model="data.image">
+            <input id="file" name="file" type="file" ngf-select ng-model="data.image" name="file"    
+             accept="image/*" ngf-max-size="100MB" required
+             ngf-model-invalid="errorFile">
+
             </center>
             <br>
             <div class="table">
@@ -23,7 +26,7 @@
                     <span id="text">Modelo</span>
                 </div>
                 <div class="table-cell">
-                    <input type="text" id="model-id" ng-model="data.model" name="fname" placeholder="Digite modelo"> 
+                    <input type="number" id="model-id" ng-model="data.model" name="fname" placeholder="Digite modelo"> 
                 </div>
             </div>  
             <br>

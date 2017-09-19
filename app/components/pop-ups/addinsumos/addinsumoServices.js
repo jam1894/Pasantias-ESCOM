@@ -1,4 +1,4 @@
-escom.factory('addinsumosServices',['$http', function($http){
+escom.factory('addinsumosServices',['$http','globals','ModalService', function($http,globals,Modal){
     var servicesinsumos = {};
 
     servicesinsumos.servicesInsumos = function(url,data){
@@ -6,12 +6,15 @@ escom.factory('addinsumosServices',['$http', function($http){
         var promise = $http.post(window.urlService + url,data)
             .success(function(data){
                 hideLoad();
-                console.log(data);
                 return data;
             })
             .error(function(err){
                 hideLoad();
-                console.log("No tienes conexión a internet" + err);
+                globals.set(err);
+                    Modal.showModal({
+                        templateUrl : 'app/components/pop-ups/popGlobal/popUpMessage.html',
+                        controller : 'globalPopController'
+                })
             });
         return promise;
     };

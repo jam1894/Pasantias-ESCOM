@@ -1,4 +1,4 @@
- var escom = angular.module('escomWeb', ['ui.router', 'angularModalService']);
+ var escom = angular.module('escomWeb', ['ui.router', 'angularModalService', 'ngFileUpload']);
 
 /*setTimeout(function(){
 	try{

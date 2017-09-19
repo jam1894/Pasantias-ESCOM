@@ -1,4 +1,4 @@
-escom.factory('requestService',['$http', function($http){
+escom.factory('requestService',['$http','globals','ModalService', function($http,globals,Modal){
     var machinerequest = {};
 
     machinerequest.servicesRequest = function(data,URL){
@@ -6,12 +6,15 @@ escom.factory('requestService',['$http', function($http){
         var promise = $http.get(window.urlService + URL,data)
             .success(function(data){
                 hideLoad();
-                console.log(data);
                 return data;
             })
             .error(function(err){
                 hideLoad();
-                alert(err);
+                globals.set(err);
+                Modal.showModal({
+                    templateUrl : 'app/components/pop-ups/popGlobal/popUpMessage.html',
+                    controller : 'globalPopController'
+                })
             });
         return promise;
     };
@@ -21,12 +24,15 @@ escom.factory('requestService',['$http', function($http){
         var promise = $http.post(window.urlService + URL,data)
             .success(function(data){
                 hideLoad();
-                console.log(data);
                 return data;
             })
             .error(function(err){
                 hideLoad();
-                alert(err);
+                globals.set(err);
+                Modal.showModal({
+                    templateUrl : 'app/components/pop-ups/popGlobal/popUpMessage.html',
+                    controller : 'globalPopController'
+                })
             });
         return promise;
     };

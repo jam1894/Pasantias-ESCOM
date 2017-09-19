@@ -1,5 +1,5 @@
-escom.controller('registroMaquinasController', ['$scope','$state','registroMaquinaServices','ModalService', 'globals',
-function($scope,$state,registroMaquinaServices,Modal,globals) {
+escom.controller('registroMaquinasController', ['$scope','$state','registroMaquinaServices','ModalService', 'globals','Upload','$timeout',
+function($scope,$state,registroMaquinaServices,Modal,globals,Upload,$timeout) {
 
   	$scope.data = {
     	changesupplie 	: $("#insum option")[0].value,
@@ -11,6 +11,7 @@ function($scope,$state,registroMaquinaServices,Modal,globals) {
  	$scope.img = 'assets/img/ESCOM_2.jpg';
 
  	var url = "";
+ 	var dataimg;
 
  	function getMark(){
  		data = {};
@@ -54,6 +55,7 @@ function($scope,$state,registroMaquinaServices,Modal,globals) {
 					timeMaintenance	: $scope.result.TiempoMantenimiento,
 					timeUseCurrent	: $scope.result.TiempoUsoActual
  				}
+ 				$scope.img = window.urlImages + $scope.result.Imagen;
 				$("#choose-marca").val($scope.result.id_Marca);
 				$scope.actionIU = "update";
 			}
@@ -69,6 +71,7 @@ function($scope,$state,registroMaquinaServices,Modal,globals) {
 					timeUseCurrent	: "",
 			    	changesupplie 	: $("#insum option")[0].value
  				}
+ 				$scope.img = 'assets/img/ESCOM_2.jpg';
  				$("#choose-marca").val($("#choose-marca option")[0].value);
 			}
 			
@@ -76,6 +79,7 @@ function($scope,$state,registroMaquinaServices,Modal,globals) {
 	}
 
 	$scope.SaveorUpdate = function(data){
+		dataimg = data;
 		if($("#serial-id").val() != "" && $("#model-id").val() != "" && $("#machine-id").val() != "" 
 			&& $("#choose-marca").val() != "" && $("#state-id").val() != "" && $("#timeMaintenance-id").val() != "" 
 			&& $("#timeUseCurrent-id").val() != ""){
@@ -84,21 +88,28 @@ function($scope,$state,registroMaquinaServices,Modal,globals) {
 			for(var i = 0; i < $scope.supplies.length; i++){
 				data["supplies"].push($scope.supplies[i].Id_insumo);
 			}
-			var imgSend = new FormData();
-			imgSend.append("file",$scope.img);
-			data["image"] =	imgSend;
 			if($scope.actionIU == "insert"){
 				url = "maquinas";
 				registroMaquinaServices.servicesRegistroMaquinaPost(url,data).then(function(promise){
 					var requests = promise.data.response;
-					console.log(requests);
+		            globals.set(requests);
+		            Modal.showModal({
+		            	templateUrl : 'app/components/pop-ups/popGlobal/popUpMessage.html',
+		               	controller : 'globalPopController'
+		            })
+					$scope.uploadPic(dataimg);		           
 				})
 			}
 			else if($scope.actionIU == "update"){
 				url = "maquinas/"+ data.serial;
 				registroMaquinaServices.servicesRegistroMaquinaPut(url,data).then(function(promise){
 					var requests = promise.data.response;
-					console.log(requests);
+		            globals.set(requests);
+		            Modal.showModal({
+		            	templateUrl : 'app/components/pop-ups/popGlobal/popUpMessage.html',
+		               	controller : 'globalPopController'
+		            }) 
+					$scope.uploadPic(dataimg);		       
 				})
 			}			
 		}else{
@@ -183,13 +194,29 @@ function($scope,$state,registroMaquinaServices,Modal,globals) {
        	var filePath = $("#file").val();
        	var reader = new FileReader();
        	reader.onload = function (e) {
-            $('#image').attr('src',e.target.result);
+            $scope.img = e.target.result;
             $scope.img["imgbase64"] = e.target.result;
-            console.log($scope.img);
        	};
        	reader.readAsDataURL(this.files[0]); 
 	});
 
+ 	$scope.uploadPic = function(datamachine) {
+        Upload.upload({
+	      url: window.urlService + 'maquinas/storageImage',
+	      data: {file: datamachine.image,serial : datamachine.serial},
+        }).then(function (resp) {
+            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+        }, function (resp) {
+            globals.set('Error status: ' + resp.status);
+            Modal.showModal({
+            	templateUrl : 'app/components/pop-ups/popGlobal/popUpMessage.html',
+               	controller : 'globalPopController'
+            })  
+        }, function (evt) {
+            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+        });
+    }
  	getMark();
  	getsupplies();
 

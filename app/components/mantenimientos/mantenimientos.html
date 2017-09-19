@@ -11,7 +11,7 @@
                     <span>Serial : {{equipo.Serial}}</span><br>
                     <span>Horas para mantenimiento: {{equipo.TiempoMantenimiento}}</span>
                 </div>
-                <i class="fa fa-check-circle button-font botones" aria-hidden="true" ng-click="okMantenimientos(equipo.Serial);"></i>
+                <i class="fa fa fa-exclamation-triangle button-font botones" aria-hidden="true" ng-click="okMantenimientos(equipo.Serial);"></i>
             </div>
             <div class="noExist" ng-if="ValidateManU == false">
                 No hay mantenimientos urgentes por realizar.
@@ -26,7 +26,7 @@
                     <span>Serial : {{equipo.Serial}}</span><br>
                     <span>Horas para mantenimiento: {{equipo.TiempoMantenimiento}}</span>
                 </div>
-                <i class="button-font fa fa-check-circle botones" aria-hidden="true" ng-click="okMantenimientos(equipo.Serial);"></i>
+                <i class="button-font fa fa-exclamation-triangle botones" aria-hidden="true" ng-click="okMantenimientos(equipo.Serial);"></i>
             </div>
             <div class="noExist" ng-if="validateMan == false">
                 No hay mantenimientos próximos por realizar.
@@ -41,7 +41,7 @@
                     <span>prioridad : {{novedad.prioridad}}</span><br>
                     <span>Novedad: {{novedad.Novedad}}</span>
                 </div>
-                <i class="button-font fa fa-check-circle botones" aria-hidden="true" ng-click="okNovedades(novedad.Id_novedad);"></i>
+                <i class="button-font fa fa-exclamation-triangle botones" aria-hidden="true" ng-click="okNovedades(novedad.Id_novedad);"></i>
             </div>
             <div class="noExist" ng-if="ValidateNov == false">
                 No hay novedades.

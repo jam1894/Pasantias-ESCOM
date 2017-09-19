@@ -29,56 +29,62 @@
                 </div>
             </div>
             <input type="text" name="" placeholder="Filtrar" ng-model="search.Equipo"><br><br>
-            <table id="reportsGen">
-                <tr class="tr-tittle" ng-if="data.report == 1">
-                    <td ng-repeat="tittle in keysJsonVal">{{tittle}}</td>
-                </tr>
-                <tr class="tr-tittle" ng-if="data.report == 3">
-                    <td ng-repeat="tittle in keysJsonVal">{{tittle}}</td>
-                </tr>
-                <tr class="tr-tittle" ng-if="data.report == 2">
-                    <td>ID solicitud</td>
-                    <td>Equipo</td>
-                    <td>Usuario</td>
-                    <td>Fecha</td>
-                    <td>Hora inicio</td>
-                    <td>Hora fin</td>
-                    <td>Actividad</td>
-                    <td>Estado</td>
-                    <td>Img entregada</td>
-                    <td>Img devuelta</td>
-                    <td>Comentario Entregada</td>
-                    <td>Comentario devuelta</td>
-                </tr>
-                <tr ng-repeat="requests in request | filter:search.insumo" ng-if="data.report == 1">
-                    <td>{{requests.Id_insumo}}</td>
-                    <td>{{requests.codigo}}</td>
-                    <td>{{requests.insumo}}</td>
-                    <td>{{requests.cantidad}}</td>
-                </tr>
-                <tr ng-repeat="requests in request  | filter:search.nombre | filter:search.Equipo" ng-if="data.report == 2">
-                    <td>{{requests.Id_solicitud}}</td>
-                    <td>{{requests.Equipo}}</td>
-                    <td>{{requests.nombre}} {{requests.apellido}}</td>
-                    <td>{{requests.Fecha}}</td>
-                    <td>{{requests.Hora_inicio}}</td>
-                    <td>{{requests.Hora_final}}</td>
-                    <td>{{requests.Detalles_Actividad}}</td>
-                    <td>{{requests.estado_solicitud == 1 ? "Solicitado" : requests.estado_solicitud == 2 ? "Aprobado" : requests.estado_solicitud == 3 ? "Rechazado" : requests.estado_solicitud == 4 ? "Entregado" : requests.estado_solicitud == 5 ? "Devuelto" : "" }}</td>
-                    <td></td>
-                    <td></td>
-                    <td>{{requests.comentario_ent}}</td>
-                    <td>{{requests.comentario_dev}}</td>
-                </tr>
-                <tr ng-repeat="requests in request | filter:search.Equipo" ng-if="data.report == 3">
-                    <td>{{requests.Serial}}</td>
-                    <td>{{requests.Id_novedad}}</td>
-                    <td>{{requests.Equipo}}</td>
-                    <td>{{requests.Fecha}}</td>
-                    <td>{{requests.Novedad}}</td>
-                    <td>{{requests.prioridad}}</td>
-                </tr>
-            </table>
+            <div class="table-scroll">
+                <table id="reportsGen">
+                    <tr class="tr-tittle" ng-if="data.report == 1">
+                        <td ng-repeat="tittle in keysJsonVal">{{tittle}}</td>
+                    </tr>
+                    <tr class="tr-tittle" ng-if="data.report == 3">
+                        <td ng-repeat="tittle in keysJsonVal">{{tittle}}</td>
+                    </tr>
+                    <tr class="tr-tittle" ng-if="data.report == 2">
+                        <td>ID solicitud</td>
+                        <td>Equipo</td>
+                        <td>Usuario</td>
+                        <td>Fecha</td>
+                        <td>Hora inicio</td>
+                        <td>Hora fin</td>
+                        <td>Actividad</td>
+                        <td>Estado</td>
+                        <td>Img entregada</td>
+                        <td>Img devuelta</td>
+                        <td>Comentario Entregada</td>
+                        <td>Comentario devuelta</td>
+                        <td>Usuario entrega</td>
+                        <td>Usuario recibe</td>
+                    </tr>
+                    <tr ng-repeat="requests in request | filter:search.insumo" ng-if="data.report == 1">
+                        <td>{{requests.Id_insumo}}</td>
+                        <td>{{requests.codigo}}</td>
+                        <td>{{requests.insumo}}</td>
+                        <td>{{requests.cantidad}}</td>
+                    </tr>
+                    <tr ng-repeat="requests in request  | filter:search.nombre | filter:search.Equipo" ng-if="data.report == 2">
+                        <td>{{requests.Id_solicitud}}</td>
+                        <td>{{requests.Equipo}}</td>
+                        <td>{{requests.nombre}} {{requests.apellido}}</td>
+                        <td>{{requests.Fecha}}</td>
+                        <td>{{requests.Hora_inicio}}</td>
+                        <td>{{requests.Hora_final}}</td>
+                        <td>{{requests.Detalles_Actividad}}</td>
+                        <td>{{requests.estado_solicitud == 1 ? "Solicitado" : requests.estado_solicitud == 2 ? "Aprobado" : requests.estado_solicitud == 3 ? "Rechazado" : requests.estado_solicitud == 4 ? "Entregado" : requests.estado_solicitud == 5 ? "Devuelto" : "" }}</td>
+                        <td><a ng-click="openImage(requests.img_entregado);">{{requests.img_entregado}}</a></td>
+                        <td><a ng-click="openImage(requests.img_devuelto);">{{requests.img_devuelto}}</a></td>
+                        <td>{{requests.comentario_ent}}</td>
+                        <td>{{requests.comentario_dev}}</td>
+                        <td>{{requests.usuario_entrega}}</td>
+                        <td>{{requests.usuario_recibe}}</td>
+                    </tr>
+                    <tr ng-repeat="requests in request | filter:search.Equipo" ng-if="data.report == 3">
+                        <td>{{requests.Serial}}</td>
+                        <td>{{requests.Id_novedad}}</td>
+                        <td>{{requests.Equipo}}</td>
+                        <td>{{requests.Fecha}}</td>
+                        <td>{{requests.Novedad}}</td>
+                        <td>{{requests.prioridad}}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
         <div style="margin-top:30px;"></div>
     </div>

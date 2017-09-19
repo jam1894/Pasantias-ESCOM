@@ -42,7 +42,8 @@ function($scope,$state,Modal,mantenimientosServices) {
 	$scope.okMantenimientos = function(id){
 		url = "maquinas/stateMachine/" + id;
 		var data = {
-			state : "Disponible"
+			state : "Disponible",
+			timeUseCurrent : 0
 		};
 		mantenimientosServices.servicesPrincipalput(url,data).then(function(promise){
 			if(promise.data.state == 1){
@@ -61,8 +62,6 @@ function($scope,$state,Modal,mantenimientosServices) {
 		mantenimientosServices.servicesPrincipalput(url,data).then(function(promise){
 			if(promise.data.state == 1){
 				$state.reload();
-			}else{
-				
 			}
 		});	
 	}
