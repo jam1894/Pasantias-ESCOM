@@ -1,7 +1,10 @@
 escom.controller('reportesController', ['$scope','$state','ModalService','reportesServices','globals',
 function($scope,$state,Modal,reportesServices,globals) {
 
+	sessionStorage.getItem("documento") == null ? $state.go("login") : "ok";
+
 	$scope.reports = false;
+	$scope.reportMan = false;
 	$scope.keysJsonVal = [];
 	$scope.data = {
 		report : $("#reportid option")[0].value
@@ -31,11 +34,28 @@ function($scope,$state,Modal,reportesServices,globals) {
 		 		datef : datefinal
 		 	};
 		 	postService(url,data)		
+		}else if(option.report == 4){
+			var serial = option.serialMachine;
+			url = "maquinas/mantenimientos/manteMaquinas/" + serial;
+		 	data = {};
+		 	postServiceget(url,data)					
 		}
   	}
 
   	function postService(url,data){
 	  	reportesServices.servicesReporte(url,data).then(function(promise){
+	        var result = promise.data;
+	        $scope.request = result.response;
+		    console.log($scope.request);
+		    var keysjsresponse = Object.keys($scope.request[0]);
+		    for(var i=0;i<keysjsresponse.length;i++){
+		    	$scope.keysJsonVal.push(keysjsresponse[i]);
+		    }
+	  	});
+  	}
+
+  	function postServiceget(url,data){
+	  	reportesServices.servicesReporteGet(url,data).then(function(promise){
 	        var result = promise.data;
 	        $scope.request = result.response;
 		    console.log($scope.request);
@@ -59,10 +79,15 @@ function($scope,$state,Modal,reportesServices,globals) {
   	}
 
   	$scope.validateReport = function(e){
-  		if(e != 1)
+  		if(e != 1 && e != 4)
   			$scope.reports = true;
   		else
   			$scope.reports = false;
+
+  		if(e == 4)
+  			$scope.reportMan = true;
+  		else
+  			$scope.reportMan = false;
   	}
 
   	$scope.openImage = function(image){

@@ -1,6 +1,8 @@
 escom.controller('registroUsuariosAdminController',['$scope','$state','RegisterAdminService','ModalService','globals',
 function($scope,$state,RegisterAdminService,Modal,globals) {
 
+	sessionStorage.getItem("documento") == null ? $state.go("login") : "ok";
+
 	$scope.rangos = {};
  	$scope.actionIU = "";
 
@@ -9,7 +11,8 @@ function($scope,$state,RegisterAdminService,Modal,globals) {
 		if(data != undefined)
 		{
 			if( data.hasOwnProperty("lastname") && data.hasOwnProperty("name") && data.hasOwnProperty("nit") 
-				&& $("#range option:selected").text() != "Rango" && $("#study-grade option:selected").text() != "Tipo de estudio"){
+				&& $("#range option:selected").text() != "Rango" &&  $("#study-grade option:selected").text() != "Tipo de estudio"
+				&& $("#state option:selected").text() != "Estado"){
 
 				if($scope.actionIU == "insert"){
 					if($("#password-id").val().trim() != "" && $("#passdValid").val().trim() != ""){
@@ -18,6 +21,8 @@ function($scope,$state,RegisterAdminService,Modal,globals) {
 							data["tipoestudio"] = $("#study-grade option:selected").val();
 							data["range"] = $("#range option:selected").val();
 							data["rol"] = $("#tipo-usuario option:selected").val();
+							data["estado"] = $("#state option:selected").val();
+							data.rol == "1" ? data["state"] = 1 : data["state"] = 2;
 							RegisterAdminService.servicesLogin(data,url).then(function(promise){
 					            var result = promise.data;
 					            globals.set(result.message);
@@ -28,12 +33,13 @@ function($scope,$state,RegisterAdminService,Modal,globals) {
 								$scope.data = {
 									name			: "",
 									lastname 		: "",
-									nit 			: user,
+									nit 			: "",
 									password		: "",
 				 				}
 						 		$("#tipo-usuario").val($("#tipo-usuario option")[0].value);
 						 		$("#range").val($("#range option")[0].value);
-						 		$("#study-grade").val($("#study-grade option")[0].value);					            				
+						 		$("#study-grade").val($("#study-grade option")[0].value);
+						 		$("#passdValid").val("");				            				
 				      		})
 						}else{		 
 				            globals.set("Las contraseñas no coinciden. Por favor intentalo nuevamente");
@@ -52,14 +58,25 @@ function($scope,$state,RegisterAdminService,Modal,globals) {
 						data["tipoestudio"] = $("#study-grade option:selected").val();
 						data["range"] = $("#range option:selected").val();
 						data["rol"] = $("#tipo-usuario option:selected").val();
-
+						data["estado"] = $("#state option:selected").val();
 						RegisterAdminService.servicesusersPut(data,url).then(function(promise){
 				            var result = promise.data;
 				            globals.set(result.response);
 				            Modal.showModal({
 				              templateUrl : 'app/components/pop-ups/popGlobal/popUpMessage.html',
 				              controller : 'globalPopController'
-				            })						
+				            })
+							$scope.data = {
+								name			: "",
+								lastname 		: "",
+								nit 			: "",
+								password		: "",
+			 				}
+					 		$("#tipo-usuario").val($("#tipo-usuario option")[0].value);
+					 		$("#range").val($("#range option")[0].value);
+					 		$("#study-grade").val($("#study-grade option")[0].value);
+					 		$("#passdValid").val("");
+
 			      		})
 					}else{		 
 			            globals.set("Las contraseñas no coinciden. Por favor intentalo nuevamente");
@@ -110,7 +127,7 @@ function($scope,$state,RegisterAdminService,Modal,globals) {
 				$scope.data = {
 					name			: result.nombre,
 					lastname 		: result.apellido,
-					nit 			: result.documento,
+					nit 			: user,
 					password		: ""
  				}
 		 		$("#tipo-usuario").val(result.id_rol);
@@ -129,6 +146,18 @@ function($scope,$state,RegisterAdminService,Modal,globals) {
             var result = promise.data;
             $scope.rangos = result.response;
       	})
+	}
+
+	$scope.delete = function(id){
+		if(id != undefined && id != ""){
+			url = 'users/' + id;
+	      	RegisterAdminService.servicesusersDelete(data,url).then(function(promise){
+	            var result = promise.data;
+	            if(result.state == 1){
+	            	$state.reload();
+	            }
+	      	})					
+      }
 	}
 
 	getRango();

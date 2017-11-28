@@ -2,8 +2,8 @@
     <div id="content-register">
         <br><br>
         <h1>Solicitar Equipo</h1>
-        <div class="image">
-            <img src = 'assets\img\ESCOM_2.jpg' class="images">
+        <div id="image-back">
+            <img ng-src="{{image}}" id="image-machine">
         </div>
         <br>
         <select id="machine" ng-model="data.idequipo" ng-change="changesupplies();">
@@ -19,10 +19,10 @@
         <div class="horas"><span class="font-medium">Fecha</span></div>
         <input type="date" ng-model="data.fecha" placeholder="Fecha" required>
         <br><br>
-        <div class="horas"><span class="font-medium">Hora de Inicio</span></div>
+        <div class="horas"><span class="font-medium">Hora de Inicio (Hora militar-24 horas)</span></div>
         <input type="time" ng-model="data.horaInicio" required> 
         <br><br>
-        <div class="horas"><span class="font-medium">Hora de Salida</span></div>
+        <div class="horas"><span class="font-medium">Hora de Salida (Hora militar-24 horas)</span></div>
         <input type="time" ng-model="data.horaFin" required> 
         <br><br>
         <textarea rows="4" cols="38" ng-model="data.detalleActividad" placeholder= "Detalle de la Actividad" class="textarea"></textarea> 

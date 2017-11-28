@@ -1,6 +1,8 @@
 escom.controller('requestMachineController',['$scope','$state','requestService','ModalService','globals',
 function($scope,$state,requestService,Modal,globals) {
 
+  sessionStorage.getItem("documento") == null ? $state.go("login") : "ok";
+
 	$scope.machines = {};
   $scope.insumos = {};
   $scope.data = {
@@ -8,6 +10,8 @@ function($scope,$state,requestService,Modal,globals) {
     "changesupplie" : $("#insum option")[0].value
   };
   $scope.supplies = [];
+
+  $scope.image = '../../../assets/img/no-image.png';
 
 	function getMachine(){
 		url = "maquinas";
@@ -26,14 +30,29 @@ function($scope,$state,requestService,Modal,globals) {
       $scope.insumos = {};
       	requestService.servicesRequest(data,url).then(function(promise){
             var result = promise.data;
-            if(result.state == 0)
-		          alert(result.response);
+            if(result.state == 0){
+              globals.set(result.response);
+              Modal.showModal({
+                templateUrl : 'app/components/pop-ups/popGlobal/popUpMessage.html',
+                controller : 'globalPopController'
+              })
+            }
             else
               $scope.insumos = result.response;
       	})
 
       $("#box-insumos > div").remove();
       $scope.supplies = [];
+      for(var i=0;i< $scope.machines.length;i++){
+        if($scope.machines[i].Serial == id){
+          if($scope.machines[i].Imagen != ""){
+            $scope.image = window.urlImages + $scope.machines[i].Imagen;
+            break;
+          }else{
+            $scope.image = '../../../assets/img/no-image.png';
+          }
+        }
+      }
     }
     
     $scope.request = function(data){
@@ -47,9 +66,9 @@ function($scope,$state,requestService,Modal,globals) {
             data["estado_solicitud"] = 1;
             data["img_entregado"] = '';
             data["img_devuelto"] = '';
-            data.fecha = corvertDate(data.fecha);
-            data.horaInicio = corverthour(data.horaInicio);
-            data.horaFin = corverthour(data.horaFin);
+            //data.fecha = corvertDate(data.fecha);
+            //data.horaInicio = corverthour(data.horaInicio);
+            //data.horaFin = corverthour(data.horaFin);
             var suppliesSelect = $("#box-insumos div");
             for(var i=0;i<suppliesSelect.length;i++){
               data.supplies.push(suppliesSelect[i].id);
@@ -62,13 +81,12 @@ function($scope,$state,requestService,Modal,globals) {
                 controller : 'globalPopController'
               });
               $scope.data = {
-                "idequipo" : $("#machine option")[0].value,
-                "changesupplie" : $("#insum option")[0].value
+                idequipo : $("#machine option")[0].value,
+                changesupplie : $("#insum option")[0].value
               };
-              $("#machine option:selected").text($("#machine option")[0].value);
               $("#insum option:selected").text($("#insum option")[0].value);
               $scope.supplies = [];
-            })             
+            })                
           }else{
               globals.set("La hora final no puede ser menor a la inicial");
               Modal.showModal({

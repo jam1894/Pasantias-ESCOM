@@ -11,7 +11,7 @@
                     <span>Serial : {{equipo.Serial}}</span><br>
                     <span>Horas para mantenimiento: {{equipo.TiempoMantenimiento}}</span>
                 </div>
-                <i class="fa fa fa-exclamation-triangle button-font botones" aria-hidden="true" ng-click="okMantenimientos(equipo.Serial);"></i>
+                <div class="check-button" ng-click="okMantenimientos(equipo.Serial);">Revisado</div>
             </div>
             <div class="noExist" ng-if="ValidateManU == false">
                 No hay mantenimientos urgentes por realizar.
@@ -26,7 +26,7 @@
                     <span>Serial : {{equipo.Serial}}</span><br>
                     <span>Horas para mantenimiento: {{equipo.TiempoMantenimiento}}</span>
                 </div>
-                <i class="button-font fa fa-exclamation-triangle botones" aria-hidden="true" ng-click="okMantenimientos(equipo.Serial);"></i>
+                <div class="check-button" ng-click="okMantenimientos(equipo.Serial);">Revisado</div>
             </div>
             <div class="noExist" ng-if="validateMan == false">
                 No hay mantenimientos próximos por realizar.
@@ -41,10 +41,25 @@
                     <span>prioridad : {{novedad.prioridad}}</span><br>
                     <span>Novedad: {{novedad.Novedad}}</span>
                 </div>
-                <i class="button-font fa fa-exclamation-triangle botones" aria-hidden="true" ng-click="okNovedades(novedad.Id_novedad);"></i>
+                 <div class="check-button" ng-click="okNovedades(novedad.Id_novedad);">Revisado</div>
             </div>
             <div class="noExist" ng-if="ValidateNov == false">
                 No hay novedades.
+            </div>
+            <!--Usuarios por aprobar-->
+            <span class="title font-medium">Usuarios pendientes por aprobación</span>
+            <div class="box-classSoli" ng-repeat = "usersApps in usersApp">
+                <div>
+                    <span class="font-medium">{{usersApps.nombre}} {{usersApps.apellido}}</span><br>
+                    <span>Documento : {{usersApps.documento}}</span><br>
+                    <span>Rango : {{usersApps.rango}}</span><br>
+                    <span>Tipo de estudio: {{usersApps.tipoEstudio}}</span>
+                </div>
+                <i class="fa fa-check-circle button-font botones" ng-click="approveUser(usersApps.documento);"></i>
+                <i class="fa fa-times-circle button-fontbad botones" ng-click="rejectUser(usersApps.documento);"></i>
+            </div>
+            <div class="noExist" ng-if="ValidateUser == false">
+                No hay usuarios nuevos.
             </div>
         </div>             
     </div>

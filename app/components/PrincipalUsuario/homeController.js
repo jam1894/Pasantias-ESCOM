@@ -1,6 +1,7 @@
 escom.controller('homeController',['$scope','$state','homeService','globals','ModalService',
 function($scope,$state,homeService,globals,Modal) {
 	
+	sessionStorage.getItem("documento") == null ? $state.go("login") : "ok";
 	var documento = JSON.parse(sessionStorage.getItem("documento"));
 	$scope.requests = {};
 	$scope.validateR = false, $scope.validateC = false, $scope.validateW = false;

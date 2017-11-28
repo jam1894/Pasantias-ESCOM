@@ -1,6 +1,8 @@
 escom.controller('principalAdminController', ['$scope','$state','ModalService','principalServices','globals',
 function($scope,$state,Modal,principalServices,globals) {
 
+	sessionStorage.getItem("documento") == null ? $state.go("login") : "ok";
+
 	var url = "";
 	$scope.validateSp = false, $scope.validateA = false, $scope.validateE = false, $scope.validateD = false, $scope.validateR = false;
 

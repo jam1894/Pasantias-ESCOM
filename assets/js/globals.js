@@ -1,6 +1,10 @@
-window.urlService = 'http://app.mincivil.net:90/public/';
+//window.urlService = 'http://app.mincivil.net:90/public/';
 
-window.urlImages = "http://app.mincivil.net:90/public/uploads/images/";
+//window.urlImages = "http://app.mincivil.net:90/public/uploads/images/";
+
+window.urlService = 'http://127.0.0.1:8000/';
+
+window.urlImages = "http://127.0.0.1:8000/uploads/images/";
 
 var width=$("#menu").width();
 var width_display = $(window).width();
@@ -44,7 +48,7 @@ function showLoad(){
 	function ConvertgetDateCurrent(date){
 		var today = new Date(date);
 		var dd = today.getDate();
-		var mm = today.getMonth()+1; //January is 0!
+		var mm = today.getMonth()+1; 
 		var yyyy = today.getFullYear();
 
 		if(dd<10) {

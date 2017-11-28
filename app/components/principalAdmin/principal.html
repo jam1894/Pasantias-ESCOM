@@ -2,9 +2,10 @@
     <div class="contenido">
     <div style="margin-top:70px;"></div>
         <div id="inicio-content">
-            <span class="title font-medium">Solicitudes pendientes de aprobación</span><br>
+            <label for="date">Filtrar por fecha: </label><input type="date" id="date" ng-model="searchDate" class="form-control"><br><br>
+            <span class="title font-medium">Solicitudes pendientes de aprobación</span><br> 
             <!--Solicitudes a vencer-->
-            <div class="important-sol box-classSoli" id="solicitud-{{request.Id_solicitud}}" ng-repeat = "request in requests" ng-if="request.estado_solicitud === 1 && request.days >= 0 && request.days <= 3">
+            <div class="important-sol box-classSoli" id="solicitud-{{request.Id_solicitud}}" ng-repeat = "request in requests | filter: {Fecha: searchDate }" ng-if="request.estado_solicitud === 1 && request.days >= 0 && request.days <= 3">
                 <div ng-click="soliciPenAprob(request.Id_solicitud);">
                     <span class="font-medium">{{request.Equipo}}</span><br>
                     <span>Fecha : {{request.Fecha}} {{request.Hora_inicio}} - {{request.Hora_final}}</span><br>
@@ -14,7 +15,7 @@
                 <i class="fa fa-times-circle button-fontbad botones" ng-click="validarSol(request.Id_solicitud,3);"></i>
             </div>
             <!--Solicitudes Pendientes aprobar-->
-            <div class="box-classSoli" id="solicitud-{{request.Id_solicitud}}" ng-repeat = "request in requests" ng-if="request.estado_solicitud === 1 && request.days > 3">
+            <div class="box-classSoli" id="solicitud-{{request.Id_solicitud}}" ng-repeat = "request in requests | filter: {Fecha: searchDate }" ng-if="request.estado_solicitud === 1 && request.days > 3">
                 <div ng-click="soliciPenAprob(request.Id_solicitud);">
                     <span class="font-medium">{{request.Equipo}}</span><br>
                     <span>Fecha : {{request.Fecha}} {{request.Hora_inicio}} - {{request.Hora_final}}</span><br>
@@ -27,7 +28,7 @@
                 No hay solicitudes pendientes por aprobar.
             </div>
             <span class="title font-medium">Solicitudes aprobadas</span>
-            <div class="box-classSoli" id="solicitud-{{request.Id_solicitud}}" ng-repeat = "request in requests" ng-if="request.estado_solicitud === 2">
+            <div class="box-classSoli" id="solicitud-{{request.Id_solicitud}}" ng-repeat = "request in requests | filter: {Fecha: searchDate }" ng-if="request.estado_solicitud === 2">
                 <div ng-click="solicitudesApro(request.Id_solicitud);">
                     <span class="font-medium">{{request.Equipo}}</span><br>
                     <span>Fecha : {{request.Fecha}} {{request.Hora_inicio}} - {{request.Hora_final}}</span><br>
@@ -51,7 +52,7 @@
                 No has rechazado solicitudes recientemente.
             </div>
             <span class="title font-medium">Entregadas</span>
-            <div class="box-classSoli" id="solicitud-{{request.Id_solicitud}}" ng-repeat = "request in requests" ng-if="request.estado_solicitud === 4">
+            <div class="box-classSoli" id="solicitud-{{request.Id_solicitud}}" ng-repeat = "request in requests | filter: {Fecha: searchDate }" ng-if="request.estado_solicitud === 4">
                 <div ng-click="solicitudesEntre(request.Id_solicitud);">
                     <span class="font-medium">{{request.Equipo}}</span><br>
                     <span>Fecha : {{request.Fecha}} {{request.Hora_inicio}} - {{request.Hora_final}}</span><br>

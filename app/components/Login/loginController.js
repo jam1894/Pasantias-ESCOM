@@ -11,17 +11,18 @@ function($scope,$state,Modal,loginServices,globals) {
 					sessionStorage.setItem("apellido",$scope.requests.message[0].apellido);
 					sessionStorage.setItem("rol",$scope.requests.message[0].id_rol);
 					sessionStorage.setItem("documento",$scope.requests.message[0].documento);
-					if($scope.requests.message[0].id_rol == 1)			
+					if($scope.requests.message[0].id_rol == 1 && $scope.requests.message[0].estado == 2)			
 						$state.go("menu.principalUser");
 					else if($scope.requests.message[0].id_rol == 2)
 						$state.go("menu.principalAdmin");
 					else{
-			          	globals.set("El usuario no tiene permisos para ingresar");
+			          	globals.set("El usuario no tiene permisos para ingresar o tu cuenta aún no ha sido activada.");
 			            	Modal.showModal({
 			            		templateUrl : 'app/components/pop-ups/popGlobal/popUpMessage.html',
 			               		controller : 'globalPopController'
 			            })
-			        }  
+			        }
+
 				}else{
 		          	globals.set($scope.requests.message);
 		            	Modal.showModal({

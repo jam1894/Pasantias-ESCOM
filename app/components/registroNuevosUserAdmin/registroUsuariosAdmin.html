@@ -1,5 +1,5 @@
 <div class="fondo">
-    <div class="background-over">
+    <div class="background-over" style="overflow:scroll;">
         <div style="margin-top:70px;"></div>
         <h1>Registrar Usuarios</h1>
         <input type="number" ng-model = "data.nit" placeholder="Numero de Documento" ng-blur="validateUser(data.nit);" required> 
@@ -21,10 +21,16 @@
         <br><br>
         <select id="study-grade">
             <option selected disabled>Tipo de estudio</option>
-            <option value="1">Técnico</option>
-            <option value="2">Tecnologico</option>
-            <option value="3">Profesional</option>
-            <option value="4">Maestría</option>
+            <option value="1">Ingeniería</option>
+            <option value="2">Tecnología</option>
+            <option value="3">Postgrado</option>
+        </select>
+        <br><br>
+        <select id="state">
+            <option selected disabled>Estado</option>
+            <option value="1">En espera</option>
+            <option value="2">Activo</option>
+            <option value="3">Rechazado</option>
         </select>
         <br><br>
         <input type="password" id="password-id" ng-model = "data.password" placeholder="Contraseña" autocomplete="off" required> 
@@ -32,5 +38,7 @@
         <input type="password" id="passdValid" placeholder="Repita Contraseña" autocomplete="off" required>
         <br><br>
         <button type="button" class="button1" ng-click="register(data)">{{actionIU == "update" ? "Actualizar" : "Guardar"}}</button>
+        <button type="button" class="button-red" ng-click="delete(data.nit)">Eliminar</button>
+        <br><br><br>
     </div>
 </div>

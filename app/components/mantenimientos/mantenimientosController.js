@@ -1,7 +1,9 @@
-escom.controller('mantenimientosController', ['$scope','$state','ModalService','mantenimientosServices',
-function($scope,$state,Modal,mantenimientosServices) {
+escom.controller('mantenimientosController', ['$scope','$state','ModalService','mantenimientosServices','globals',
+function($scope,$state,Modal,mantenimientosServices,globals) {
 
-	$scope.validateMan = false,$scope.ValidateNov = false,$scope.ValidateManU = false;
+	sessionStorage.getItem("documento") == null ? $state.go("login") : "ok";
+
+	$scope.validateMan = false,$scope.ValidateNov = false,$scope.ValidateManU = false,$scope.ValidateUser = false;
 
 	function getMaintences(){
 		url = "maquinas/mm/MachineMainte";
@@ -39,6 +41,21 @@ function($scope,$state,Modal,mantenimientosServices) {
 		});
 	}
 
+	function getUsers(){
+ 		url = 'users/getUsersApp/getAll';
+ 		data = {};
+		mantenimientosServices.servicesPrincipalget(url,data).then(function(promise){
+			var requests = promise.data;
+			$scope.usersApp = requests.response;
+			if(promise.data.status == 1){
+				console.log($scope.novedades);
+				$scope.ValidateUser = true;
+			}else{
+				$scope.ValidateUser = false;
+			}
+		})			
+	}
+
 	$scope.okMantenimientos = function(id){
 		url = "maquinas/stateMachine/" + id;
 		var data = {
@@ -54,19 +71,52 @@ function($scope,$state,Modal,mantenimientosServices) {
 		});
 	}
 
-	$scope.okNovedades = function(id){
-		url = "novedades/" + id;
+	$scope.approveUser = function(id){
+		url = "users/updateState/updateAccept";
 		var data = {
-			state : "Revisado"
+			id : id
 		};
-		mantenimientosServices.servicesPrincipalput(url,data).then(function(promise){
+		mantenimientosServices.servicesPrincipal(url,data).then(function(promise){
 			if(promise.data.state == 1){
 				$state.reload();
+			}else{
+                globals.set(promise.data.response);
+                Modal.showModal({
+                    templateUrl : 'app/components/pop-ups/popGlobal/popUpMessage.html',
+                    controller : 'globalPopController'
+                })
 			}
-		});	
+		});
+	}
+
+	$scope.rejectUser = function(id){
+		url = "users/updateState/updateReject";
+		var data = {
+			id : id
+		};
+		mantenimientosServices.servicesPrincipal(url,data).then(function(promise){
+			if(promise.data.state == 1){
+				$state.reload();
+			}else{
+                globals.set(promise.data.response);
+                Modal.showModal({
+                    templateUrl : 'app/components/pop-ups/popGlobal/popUpMessage.html',
+                    controller : 'globalPopController'
+                })
+			}
+		});
+	}
+
+	$scope.okNovedades = function(id){
+        globals.set(id);
+        Modal.showModal({
+            templateUrl : 'app/components/pop-ups/mantenimientos/popMantenimientos.html',
+            controller : 'popMantenimientosController'
+        })
 	}
 
 	getMaintences();
 	getNovelties();
+	getUsers();
 
 }]);

@@ -1,9 +1,9 @@
-escom.factory('mantenimientosServices',['$http','globals','ModalService', function($http,globals,Modal){
-    var mateinceservices = {};
+escom.factory('popMantenimientosServices',['$http','globals','ModalService', function($http,globals,Modal){
+    var solicitudes = {};
 
-    mateinceservices.servicesPrincipal = function(url,data){
+    solicitudes.servicesPrincipal = function(url,data){
         showLoad();
-        var promise = $http.post(window.urlService + url,data)
+        var promise = $http.post(window.urlService +'')
             .success(function(data){
                 hideLoad();
                 return data;
@@ -19,7 +19,7 @@ escom.factory('mantenimientosServices',['$http','globals','ModalService', functi
         return promise;
     };
 
-    mateinceservices.servicesPrincipalget = function(url,data){
+    solicitudes.servicesPrincipalget = function(url,data){
         showLoad();
         var promise = $http.get(window.urlService + url)
             .success(function(data){
@@ -37,7 +37,7 @@ escom.factory('mantenimientosServices',['$http','globals','ModalService', functi
         return promise;
     };
 
-    mateinceservices.servicesPrincipalput = function(url,data){
+    solicitudes.servicesPrincipalput = function(url,data){
         showLoad();
         var promise = $http.put(window.urlService + url,data)
             .success(function(data){
@@ -55,5 +55,5 @@ escom.factory('mantenimientosServices',['$http','globals','ModalService', functi
         return promise;
     };
 
-    return mateinceservices;
+    return solicitudes;
 }]);

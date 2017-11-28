@@ -76,6 +76,7 @@ escom.directive('maxHeight', function(){
 	};
 });
 
+
 function repeatNtimes(n, duration, callback){
 	var count = 0;
 	var interval = setInterval(function(){

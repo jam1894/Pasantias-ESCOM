@@ -1,6 +1,8 @@
 escom.controller('registroMaquinasController', ['$scope','$state','registroMaquinaServices','ModalService', 'globals','Upload','$timeout',
 function($scope,$state,registroMaquinaServices,Modal,globals,Upload,$timeout) {
 
+	sessionStorage.getItem("documento") == null ? $state.go("login") : "ok";
+	
   	$scope.data = {
     	changesupplie 	: $("#insum option")[0].value,
     	state 			: $("#state-id option")[0].value
@@ -159,6 +161,11 @@ function($scope,$state,registroMaquinaServices,Modal,globals,Upload,$timeout) {
 		}
     }
 
+    $scope.refresh = function(){
+    	getMark();
+    	getsupplies();	
+    }
+
     $scope.addSupplie = function(){
     	var valsupplie = true;
     	var idinsumo = $("#insum option:selected")[0].id;
@@ -207,16 +214,30 @@ function($scope,$state,registroMaquinaServices,Modal,globals,Upload,$timeout) {
         }).then(function (resp) {
             console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
         }, function (resp) {
-            globals.set('Error status: ' + resp.status);
+            /*globals.set('Error status: ' + resp.status);
             Modal.showModal({
             	templateUrl : 'app/components/pop-ups/popGlobal/popUpMessage.html',
                	controller : 'globalPopController'
-            })  
+            })*/
+            console.log(resp.status);
         }, function (evt) {
             var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
             console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
         });
     }
+
+    $scope.deleteMachine = function(id){
+		if(id != undefined && id != ""){
+			url = "maquinas/delMachine/"+ id;
+			registroMaquinaServices.servicesRegistroMaquinaDelete(url).then(function(promise){
+				var result = promise.data;
+	            if(result.state == 1){
+	            	$state.reload();
+	            }
+			})
+		} 	
+    }
+
  	getMark();
  	getsupplies();
 

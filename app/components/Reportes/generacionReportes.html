@@ -9,6 +9,7 @@
                         <option value="1">Insumos</option>
                         <option value="2">Solicitudes</option>
                         <option value="3">Novedades</option>
+                        <option value="4">Mantenimientos</option>
                     </select><br><br>
                 </div>
                 <div class="table-cell">
@@ -28,17 +29,28 @@
                     <input type="date" name="" ng-model="data.datef" style="width:95%;">
                 </div>
             </div>
+            <div ng-show = "reportMan">
+                <label>Serial</label><br>
+                <input type="text" name="" ng-model="data.serialMachine" style="width:60%;">
+                <br><br>              
+            </div>
             <input type="text" name="" placeholder="Filtrar" ng-model="search.Equipo"><br><br>
             <div class="table-scroll">
                 <table id="reportsGen">
                     <tr class="tr-tittle" ng-if="data.report == 1">
-                        <td ng-repeat="tittle in keysJsonVal">{{tittle}}</td>
+                        <td>Código</td>
+                        <td>Insumo</td>
+                        <td>Cantidad</td>
                     </tr>
                     <tr class="tr-tittle" ng-if="data.report == 3">
-                        <td ng-repeat="tittle in keysJsonVal">{{tittle}}</td>
+                        <td>Serial</td>
+                        <td>Equipo</td>
+                        <td>Fecha</td>
+                        <td>Novedad</td>
+                        <td>Prioridad</td>
+                        <td>Solución</td>
                     </tr>
                     <tr class="tr-tittle" ng-if="data.report == 2">
-                        <td>ID solicitud</td>
                         <td>Equipo</td>
                         <td>Usuario</td>
                         <td>Fecha</td>
@@ -50,17 +62,22 @@
                         <td>Img devuelta</td>
                         <td>Comentario Entregada</td>
                         <td>Comentario devuelta</td>
-                        <td>Usuario entrega</td>
-                        <td>Usuario recibe</td>
+                        <td>Funcionario encargado entrega</td>
+                        <td>Funcionario encargado recibe</td>
+                    </tr>
+                    <tr class="tr-tittle" ng-if="data.report == 4">
+                        <td>Serial</td>
+                        <td>Equípo</td>
+                        <td>Fecha mantenimiento</td>
+                        <td>Uso fecha Mantenimiento</td>
+                        <td>Uso total</td>
                     </tr>
                     <tr ng-repeat="requests in request | filter:search.insumo" ng-if="data.report == 1">
-                        <td>{{requests.Id_insumo}}</td>
                         <td>{{requests.codigo}}</td>
                         <td>{{requests.insumo}}</td>
                         <td>{{requests.cantidad}}</td>
                     </tr>
                     <tr ng-repeat="requests in request  | filter:search.nombre | filter:search.Equipo" ng-if="data.report == 2">
-                        <td>{{requests.Id_solicitud}}</td>
                         <td>{{requests.Equipo}}</td>
                         <td>{{requests.nombre}} {{requests.apellido}}</td>
                         <td>{{requests.Fecha}}</td>
@@ -77,11 +94,18 @@
                     </tr>
                     <tr ng-repeat="requests in request | filter:search.Equipo" ng-if="data.report == 3">
                         <td>{{requests.Serial}}</td>
-                        <td>{{requests.Id_novedad}}</td>
                         <td>{{requests.Equipo}}</td>
                         <td>{{requests.Fecha}}</td>
                         <td>{{requests.Novedad}}</td>
                         <td>{{requests.prioridad}}</td>
+                        <td>{{requests.solucion}}</td>
+                    </tr>
+                    <tr ng-repeat="requests in request | filter:search.Equipo" ng-if="data.report == 4">
+                        <td>{{requests.serial_equipo}}</td>
+                        <td>{{requests.equipo}}</td>
+                        <td>{{requests.fecha}}</td>
+                        <td>{{requests.usototal}}</td>
+                        <td>{{requests.usoactual}}</td>
                     </tr>
                 </table>
             </div>

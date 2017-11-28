@@ -1,0 +1,21 @@
+<div id="pop-remember" class="pop-up-behind">
+    <div class="pop-behind-form"></div>
+    <div class="pop-up">
+        <header>
+            <div class="button-close fa fa-times-circle fa-6" aria-hidden="true"></div>
+        </header>
+        <section>
+            <br>
+                <h3 class=""><b>Recordar contraseña</b></h3>
+                <br>
+                <form name="rememberpass">
+                    <input type="text" name="" ng-model="data.document" placeholder="Documento" ng-required="true" ng-blur="validateD(data.document)">
+                    <div ng-show="answerResp">
+                        <span class="span-block left">{{answer.pregunta}}</span>
+                        <input type="text" name="" ng-model="data.response" placeholder="Respuesta" ng-required="true">
+                    </div>
+                    <button class="button1" ng-click="rememberpass.$valid && remember(data,$event)">Enviar</button>
+                </form>
+         </section>
+    </div>
+</div>

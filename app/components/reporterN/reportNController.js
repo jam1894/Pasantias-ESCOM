@@ -1,6 +1,8 @@
 escom.controller('reportController',['$scope','$state','NovedadesService','ModalService','globals',
 function($scope,$state,NovedadesService,Modal,globals) {
 
+  sessionStorage.getItem("documento") == null ? $state.go("login") : "ok";
+
 	$scope.machines = {};
   	$scope.data = {
   		id_machine : $("#machine option")[0].value,
