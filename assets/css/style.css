@@ -101,7 +101,8 @@ max-width: 250px;
 }
 
 tr{
-	font-size: 13px;
+	
+font-size: 13px;
 }
 
 .margins{}
@@ -346,9 +347,7 @@ nav ul li > a{
 }
 
 nav ul li > a:hover{
-	background-color: rgba(255,255,255,0.7);
-	border-radius: 5px;
-	color: black;
+	color: rgba(255,255,255,0.7);
 }
 
 .font-medium{

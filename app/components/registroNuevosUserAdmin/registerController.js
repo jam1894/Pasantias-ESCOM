@@ -10,9 +10,9 @@ function($scope,$state,RegisterAdminService,Modal,globals) {
 
 		if(data != undefined)
 		{
-			if( data.hasOwnProperty("lastname") && data.hasOwnProperty("name") && data.hasOwnProperty("nit") 
+			if( data.hasOwnProperty("lastname") && data.hasOwnProperty("name") && data.hasOwnProperty("nit") && data.hasOwnProperty("response") 
 				&& $("#range option:selected").text() != "Rango" &&  $("#study-grade option:selected").text() != "Tipo de estudio"
-				&& $("#state option:selected").text() != "Estado"){
+				&& $("#state option:selected").text() != "Estado" && $("#answer option:selected").text() != "Pregunta seguridad"){
 
 				if($scope.actionIU == "insert"){
 					if($("#password-id").val().trim() != "" && $("#passdValid").val().trim() != ""){
@@ -22,6 +22,7 @@ function($scope,$state,RegisterAdminService,Modal,globals) {
 							data["range"] = $("#range option:selected").val();
 							data["rol"] = $("#tipo-usuario option:selected").val();
 							data["estado"] = $("#state option:selected").val();
+							data["id_pregunta"] = $("#answer option:selected").val();
 							data.rol == "1" ? data["state"] = 1 : data["state"] = 2;
 							RegisterAdminService.servicesLogin(data,url).then(function(promise){
 					            var result = promise.data;
@@ -59,6 +60,7 @@ function($scope,$state,RegisterAdminService,Modal,globals) {
 						data["range"] = $("#range option:selected").val();
 						data["rol"] = $("#tipo-usuario option:selected").val();
 						data["estado"] = $("#state option:selected").val();
+						data["id_pregunta"] = $("#answer option:selected").val();
 						RegisterAdminService.servicesusersPut(data,url).then(function(promise){
 				            var result = promise.data;
 				            globals.set(result.response);
@@ -148,6 +150,15 @@ function($scope,$state,RegisterAdminService,Modal,globals) {
       	})
 	}
 
+	function getAnswers(){
+		url = "users";
+		data = {};
+      	RegisterAdminService.servicesLoginGet(data,url).then(function(promise){
+            var result = promise.data;
+            $scope.answers = result.response;
+      	})		
+	}
+
 	$scope.delete = function(id){
 		if(id != undefined && id != ""){
 			url = 'users/' + id;
@@ -161,4 +172,5 @@ function($scope,$state,RegisterAdminService,Modal,globals) {
 	}
 
 	getRango();
+	getAnswers();
 }]);

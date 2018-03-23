@@ -113,7 +113,13 @@ function($scope,$state,registroMaquinaServices,Modal,globals,Upload,$timeout) {
 		            }) 
 					$scope.uploadPic(dataimg);		       
 				})
-			}			
+			}
+			$scope.data = {
+				name			: "",
+				lastname 		: "",
+				nit 			: "",
+				password		: "",
+			}		
 		}else{
             globals.set("Debes completar todos los campos");
             Modal.showModal({
