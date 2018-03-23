@@ -1,5 +1,5 @@
 <div class="fondo">
-    <div class="background-over">
+    <div class="background-over" style="overflow:scroll;">
         <h1>Regístrate</h1>
         <input type="text"  ng-model = "data.name" placeholder="Nombres" required> 
         <br><br>
@@ -23,11 +23,19 @@
         <br><br>
         <input type="password" id="passdValid" placeholder="Repita Contraseña" required>
         <br><br>
+        <select id="answer">
+            <option selected disabled>Pregunta seguridad</option>
+            <option ng-repeat="answer in answers" value="{{answer.id}}">{{answer.pregunta}}</option>
+        </select>
+        <br><br>
+        <input type="password" ng-model = "data.response" placeholder="Respuesta">
+        <br><br>
         <!--<div class="terms">
             <input type="checkbox" id="check-terms" ng-model = "data.checked"><label for="check-terms" style="color:blue;" ng-click="openTerms();"><u>Acepto términos y condiciones de uso</u></label>
         </div>-->
-        <br><br>
         <button type="button" class="button1" ng-click="register(data)">Regístrar</button>
         <button type="button" class="button2" ng-click="back();">Regresar</button>
+        <br>
+        <br>
     </div>
 </div>

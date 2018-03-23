@@ -7,10 +7,10 @@ function($scope,$state,RegisterService,Modal,globals) {
 
 		if(data != undefined)
 		{
-			if(data.hasOwnProperty("lastname") 					&&
+			if(data.hasOwnProperty("lastname")  && data.hasOwnProperty("response") &&
 				data.hasOwnProperty("name") && data.hasOwnProperty("nit") 							&&
 				data.hasOwnProperty("password") && $("#range option:selected").text() != "Rango" 	&&
-				$("#study-grade option:selected").text() != "Tipo de estudio"){
+				$("#study-grade option:selected").text() != "Tipo de estudio" && $("#answer option:selected").text() != "Pregunta seguridad"){
 
 				if(data.password.trim() === $("#passdValid").val().trim()){
 					url="users"
@@ -18,6 +18,7 @@ function($scope,$state,RegisterService,Modal,globals) {
 					data["rol"] = 1;
 					data["range"] = $("#range option:selected").val();
 					data["estado"] = 1;
+					data["id_pregunta"] = $("#answer option:selected").val();
 					RegisterService.servicesLogin(data,url).then(function(promise){
 			            var result = promise.data;
 			            console.log(result);
@@ -77,6 +78,15 @@ function($scope,$state,RegisterService,Modal,globals) {
       	})
 	}
 
+	function getAnswers(){
+		url = "users";
+		data = {};
+      	RegisterService.servicesLoginGet(data,url).then(function(promise){
+            var result = promise.data;
+            $scope.answers = result.response;
+      	})		
+	}
+
 	$scope.back = function(){
 		$state.go("login");
 	}
@@ -88,5 +98,6 @@ function($scope,$state,RegisterService,Modal,globals) {
         })		
 	}
 
+	getAnswers()
 	getRango();
 }]);
